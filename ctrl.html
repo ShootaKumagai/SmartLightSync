@@ -5,7 +5,9 @@
   <title>smartLive</title>
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
-    
+  <!--core pluguin-->
+  <script src="./js_core_plugin/jscolor/jscolor.js"></script>
+   <!--core pluguin-->
   <script type="text/javascript">
 
  var s = io.connect(); //リモート
@@ -24,8 +26,9 @@
 
   //クライアントからイベント送信（イベント名は自由に設定できます）
   function sendMessage(c_1,c_2,c_3) {
-    
-	msg="rgb("+c_1+","+c_2+","+c_3+")";
+    msg=c_1;
+    console.log(msg);
+	//msg="rgb("+c_1+","+c_2+","+c_3+")";
 	//var msg= new Array(3);
 	//msg[0] = c_1;
 //msg[1] = c_2;
@@ -153,8 +156,32 @@ function change_bg(){
 
 function done(){$('#pre').fadeOut()}
 
+//カラーパレット変化
+function chgColorPalletA(colorCode){
+$('.pallet').eq(0).css({backgroundColor:'#'+colorCode});
+}
+function chgColorPalletB(colorCode){
+$('.pallet').eq(1).css({backgroundColor:'#'+colorCode});
+}
+function chgColorPalletC(colorCode){
+$('.pallet').eq(2).css({backgroundColor:'#'+colorCode});
+}
+function chgColorPalletD(colorCode){
+$('.pallet').eq(3).css({backgroundColor:'#'+colorCode});
+}
+function chgColorPalletE(colorCode){
+$('.pallet').eq(4).css({backgroundColor:'#'+colorCode});
+}
+
+
+
 $(document).ready(function(e) {
-  setTimeout  ("done()",12000)
+  setTimeout  ("done()",12000);
+  $('.pallet').click(function(){
+	bgcolor=$(this).css('background-color');
+	sendMessage(bgcolor);
+	
+});
 });
 
 
@@ -166,11 +193,11 @@ $(document).ready(function(e) {
    </script>
   <style>
     *{
-      font-size:30px;
+      /*font-size:30px;*/
       margin:0;
       padding:0;
     }
-	body{color:#fff;background:#111}
+	body{color:#fff;background:#1c1c1c}
 	p.msg{font-size:10px;line-height:1.2}
 
 	#tri{display:block;
@@ -187,12 +214,13 @@ $(document).ready(function(e) {
 	#monitor_sp{width:160px;height:284px;position:relative;}
 	#monitor_sc{width:320px;height:180px;position:relative;}
 	#scr_1{background:#333}
-	.pallet{width:100px;height:100px;}
+	.pallet{width:100px;height:100px;border-radius:50px;border:1px solid #333;background:rgb(0,0,0);}
 	#color_bank_wrap section{display:inline-block;}
 	/*#scr_2{background:#0f0}
 	#scr_3{background:#00f}*/
 	.scr{position:absolute;top:0;left:0;width:100%;height:100%}
 	.control_pannel{border-top:1px dotted #ccc;float:left;width:80%;}
+	.color{width:100px;}
 	/*568px*/
 	@media screen and (max-width: 1000px) {
 		.pc_only{display:none}
@@ -241,24 +269,24 @@ runTest()</script>
 <h1>SmartLiveDirectionSystme ControlPannel</h1>
 <div id="color_bank_wrap">
 <section>
-<div class="pallet" style="background:rgb(255,0,0)" onclick="sendMessage(255,0,0);"></div>
-<button type="button"> COLOR SET</button>
+<div class="pallet" ></div>
+<input class="color" value="000000" onchange="chgColorPalletA(this.color);">
 </section>
 <section>
-<div class="pallet" style="background:rgb(0,255,0)" onclick="sendMessage(0,255,0);"></div>
-<button type="button"> COLOR SET</button>
+<div class="pallet"></div>
+<input class="color" value="000000" onchange="chgColorPalletB(this.color);">
 </section>
 <section>
-<div class="pallet" style="background:rgb(0,0,255)" onclick="sendMessage(0,0,255);"></div>
-<button type="button"> COLOR SET</button>
+<div class="pallet" ></div>
+<input class="color" value="000000" onchange="chgColorPalletC(this.color);">
 </section>
 <section>
-<div class="pallet" style="background:rgb(0,22,73)" onclick="sendMessage(0,22,73);"></div>
-<button type="button"> COLOR SET</button>
+<div class="pallet" ></div>
+<input class="color" value="000000" onchange="chgColorPalletD(this.color);">
 </section>
 <section>
-<div class="pallet" style="background:rgb(0,44,55)" onclick="sendMessage(0,44,55);"></div>	
-<button type="button"> COLOR SET</button>
+<div class="pallet" ></div>	
+<input class="color" value="000000" onchange="chgColorPalletE(this.color);">
 </section>
 </div>
 <p>INPUT：</p>
@@ -270,11 +298,7 @@ runTest()</script>
 <script>setInputMenuID(document.input_device_select.ids);</script>
 <p id="result"></p>
   <div id="msg_list" style="height:100px; overflow:auto;"></div>
-  
-  <button type="button" name="green" value="#33B300" onclick="sendMessage(0,255,0);" >GREEN</button>
-  <button type="button" name="green" value="#33B300" onclick="sendMessage(0,0,255);" >BLUE</button>
-  <button type="button" name="green" value="#33B300" onclick="sendMessage(0,0,0);" >BLACK</button>
-  <button type="button" name="green" value="#33B300" onclick="sendMessage(255,153,0);" >ORANGE</button>
+ 
   <!--<form action="" method="post" onsubmit="return false;">
     <input type="text" class="text" style="width:95%; padding:10px" id="message"/>
     <input type="submit" class="button" style="padding:10px" onclick="sendText();" value="送信" />
