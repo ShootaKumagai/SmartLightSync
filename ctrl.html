@@ -1,0 +1,287 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>smartLive</title>
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+    
+  <script type="text/javascript">
+
+ var s = io.connect(); //リモート
+  //var s = io.connect('http://localhost:3000'); //ローカル
+
+  //サーバから受け取るイベント
+  s.on("connect", function () {});  // 接続時
+  s.on("disconnect", function (client) {});  // 切断時
+  s.on("S_to_C_message", function (data) {
+    addMessage(data.value);
+  });
+//ここから変数
+
+
+//var msg=new Array[3];
+
+  //クライアントからイベント送信（イベント名は自由に設定できます）
+  function sendMessage(c_1,c_2,c_3) {
+    
+	msg="rgb("+c_1+","+c_2+","+c_3+")";
+	//var msg= new Array(3);
+	//msg[0] = c_1;
+//msg[1] = c_2;
+//msg[2] = c_3;
+	//var msg = $("#message").val(); //取得
+    //$("#message").val(""); //空白にする
+    s.emit("C_to_S_message", {value:msg}); //サーバへ送信
+  }
+  
+  function sendText() {
+    //var txt=t1;
+	//var msg= new Array(3);
+	//msg[0] = c_1;
+//msg[1] = c_2;
+//msg[2] = c_3;
+
+	//var txt = $("#message").val(); //取得
+	//msg[1] =txt;
+    //$("#message").val(""); //空白にする
+   // s.emit("C_to_S_message", {value:msg[1]}); //サーバへ送信
+  }
+   
+
+  function sendBroadcast() {
+    var msg = $("#message").val(); //取得
+    $("#message").val(""); //空白にする
+    s.emit("C_to_S_broadcast", {value:msg}); // サーバへ送信
+  }
+
+  //jqueryでメッセージを追加
+  function addMessage (value,color,size) {
+	  var comp=value
+    var msg = comp//.replace( /[!@$%<>'"&|]/g, '' ); //タグ記号とかいくつか削除
+	//var t1=comp[1].replace( /[!@$%<>'"&|]/g, '' ); //タグ記号とかいくつか削除
+    //ログの書き出し
+	//$("#msg_list").prepend("<p class='msg'>text:" + t1+ "</p>");
+	$("#msg_list").prepend("<p class='msg'>msg:" + msg+ "</p>");
+	$("#scr_1,#scr_1b").css({"backgroundColor":''+msg});
+	//$("#scr_1").css({"opacity":msg[0]});
+	//$("#scr_2").css({"opacity":msg[1]})
+	//$("#scr_3").css({"opacity":msg[2]})
+  }    
+
+
+
+
+  </script>
+   <script type="text/javascript">
+   
+   // JavaScript Document
+{
+	var m=null;
+	var inputs=null;
+	var input=null;
+	var input_device=0;
+	var input_menu_id=null;
+	
+//Midi API 判定
+	function runTest(){navigator.requestMIDIAccess().then( success, failure );}
+	function success(midiAccess)
+	{
+		m=midiAccess;
+		inputs=m.inputs();
+		setInputDeviceSelect();
+	}
+	function failure(error){alert( "NG" )}
+//インプットデバイス	
+	function setInputMenuID(parts){
+		input_menu_id = parts;
+	}
+	function setInputDeviceSelect(){
+		var i=0;
+		if(m!=null){
+			if(inputs.length>0){
+				for(i=0; i<inputs.length; i++)
+					input_menu_id.options[i+1] = new Option(inputs[i].name, i+1);
+			}
+		} 
+	}
+
+	function inputDeviceSelect(item){
+		input_device = item.options[item.selectedIndex].value-1;
+		if(input_device==-1) input_device=0;
+		input= inputs[input_device];			
+		input.onmidimessage = handleMIDIMessage1; 
+	}
+
+	
+//イベント処理
+//function raw_event(){
+	
+//	var raw_str ="<tr><td>" +event.data[1]+ "</td><td>|</td><td>" +event.data[2]+ " </td><td>|</td><td>" +event.data[0] +"</td></tr>\n";
+//		$('table#rawlog').prepend(raw_str)
+	
+//	}
+	
+function change_bg(){
+	if(event.data[1]==0)
+	{ch_1=parseInt(event.data[2])/127*100+"%";
+	}
+	if(event.data[1]==1)
+	{ch_2=parseInt(event.data[2])/127*100+"%";}
+	if(event.data[1]==2)
+	{ch_3=parseInt(event.data[2])/127*100+"%";}
+	sendMessage(ch_1,ch_2,ch_3);
+	$('body').css({"backgroundColor":"rgb("+ch_r+","+ch_g+","+ch_b+")"})
+	//
+	//var str2 ="<tr><td>" + ch_r+ "</td><td>|</td><td>"+ch_g+"</td><td>|</td><td>"+ch_b+"</td></tr>\n";
+	//$('table#log').prepend(str2);
+	}
+	function handleMIDIMessage1( event ) {
+		//
+		//raw_event()
+		change_bg()
+		//ノートオンオフ判定
+		
+		
+		
+			//
+		
+
+		
+	}
+}
+
+function done(){$('#pre').fadeOut()}
+
+$(document).ready(function(e) {
+  setTimeout  ("done()",12000)
+});
+
+
+
+
+
+
+   
+   </script>
+  <style>
+    *{
+      font-size:30px;
+      margin:0;
+      padding:0;
+    }
+	body{color:#fff;background:#111}
+	p.msg{font-size:10px;line-height:1.2}
+
+	#tri{display:block;
+	 animation: rotate 3s; 
+  animation-iteration-count: infinite;
+  -webkit-animation: rotate 3s; /* Safari & Chrome */
+  -webkit-animation-iteration-count:  infinite;
+    -webkit-animation-timing-function: linear;
+	
+	margin: 50px auto 20px auto;
+
+	}
+	.monitor{float:right;width:20%;}
+	#monitor_sp{width:160px;height:284px;position:relative;}
+	#monitor_sc{width:320px;height:180px;position:relative;}
+	#scr_1{background:#333}
+	.pallet{width:100px;height:100px;}
+	#color_bank_wrap section{display:inline-block;}
+	/*#scr_2{background:#0f0}
+	#scr_3{background:#00f}*/
+	.scr{position:absolute;top:0;left:0;width:100%;height:100%}
+	.control_pannel{border-top:1px dotted #ccc;float:left;width:80%;}
+	/*568px*/
+	@media screen and (max-width: 1000px) {
+		.pc_only{display:none}
+		#tri{width:80%;}
+		#pre{background:#fff url(http://www.benricho.org/loading_images/img-speed/loading-109-1.gif) no-repeat center;
+		background-size:10%;
+		width:100%;
+		height:100%;
+		top:0;
+		color:#000;
+		position:absolute;
+		
+		}
+		h6{text-align:center;margin-top:30%}
+	}
+
+	@keyframes rotate { 
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); } 
+}
+@-webkit-keyframes rotate { 
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); } 
+} 
+  </style>
+</head>
+<body>
+<div class="monitor">
+<h6>Screen</h6>
+<div id="monitor_sc">
+<div id="scr_1b" class="scr"></div>
+<div id="scr_2b" class="scr"></div>
+<div id="scr_3b" class="scr"></div>
+</div>
+<h6>Mobile</h6>
+<div id="monitor_sp">
+<div id="scr_1" class="scr"></div>
+<div id="scr_2" class="scr"></div>
+<div id="scr_3" class="scr"></div>
+</div>
+</div>
+<script>
+runTest()</script>
+
+<div class="control_pannel">
+<h1>SmartLiveDirectionSystme ControlPannel</h1>
+<div id="color_bank_wrap">
+<section>
+<div class="pallet" style="background:rgb(255,0,0)" onclick="sendMessage(255,0,0);"></div>
+<button type="button"> COLOR SET</button>
+</section>
+<section>
+<div class="pallet" style="background:rgb(0,255,0)" onclick="sendMessage(0,255,0);"></div>
+<button type="button"> COLOR SET</button>
+</section>
+<section>
+<div class="pallet" style="background:rgb(0,0,255)" onclick="sendMessage(0,0,255);"></div>
+<button type="button"> COLOR SET</button>
+</section>
+<section>
+<div class="pallet" style="background:rgb(0,22,73)" onclick="sendMessage(0,22,73);"></div>
+<button type="button"> COLOR SET</button>
+</section>
+<section>
+<div class="pallet" style="background:rgb(0,44,55)" onclick="sendMessage(0,44,55);"></div>	
+<button type="button"> COLOR SET</button>
+</section>
+</div>
+<p>INPUT：</p>
+	<form name="input_device_select">
+		<select name="ids" onChange="inputDeviceSelect(this);">
+			<option value="0">No Device</option>
+		</select>
+	</form>
+<script>setInputMenuID(document.input_device_select.ids);</script>
+<p id="result"></p>
+  <div id="msg_list" style="height:100px; overflow:auto;"></div>
+  
+  <button type="button" name="green" value="#33B300" onclick="sendMessage(0,255,0);" >GREEN</button>
+  <button type="button" name="green" value="#33B300" onclick="sendMessage(0,0,255);" >BLUE</button>
+  <button type="button" name="green" value="#33B300" onclick="sendMessage(0,0,0);" >BLACK</button>
+  <button type="button" name="green" value="#33B300" onclick="sendMessage(255,153,0);" >ORANGE</button>
+  <!--<form action="" method="post" onsubmit="return false;">
+    <input type="text" class="text" style="width:95%; padding:10px" id="message"/>
+    <input type="submit" class="button" style="padding:10px" onclick="sendText();" value="送信" />
+    <!--<input type="submit" class="button" style="padding:10px" onclick="sendBroadcast();" value="自分以外に送信" />-->
+  <!--</form>-->
+</div>
+
+
+</body>
+</html>
