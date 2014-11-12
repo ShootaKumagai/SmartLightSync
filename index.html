@@ -25,7 +25,7 @@
   //クライアントからイベント送信（イベント名は自由に設定できます）
   function sendMessage(c_1,c_2,c_3) {
     
-	msg="rgb("+c_1+","+c_2+","+c_3+")";
+	msg=c_1;
 	//var msg= new Array(3);
 	//msg[0] = c_1;
 //msg[1] = c_2;
@@ -63,7 +63,7 @@
     //ログの書き出し
 	//$("#msg_list").prepend("<p class='msg'>text:" + t1+ "</p>");
 	$("#msg_list").prepend("<p class='msg'>msg:" + msg+ "</p>");
-	$("#scr_1").css({"backgroundColor":''+msg});
+	$("#sp_bg,#sc_bg").css({"backgroundColor":''+msg});
 	//$("#scr_1").css({"opacity":msg[0]});
 	//$("#scr_2").css({"opacity":msg[1]})
 	//$("#scr_3").css({"opacity":msg[2]})
@@ -172,7 +172,7 @@ function change_bg(){
 function done(){$('#pre').fadeOut()}
 
 $(document).ready(function(e) {
-  setTimeout  ("done()",12000)
+  setTimeout  ("done()",1000)
 });
 
 
@@ -188,7 +188,8 @@ $(document).ready(function(e) {
       margin:0;
       padding:0;
     }
-	body{color:#fff;background:#333}
+    html{height:100%;}
+	body{color:#fff;background:#333;height:100%;}
 	p.msg{font-size:10px;line-height:1.2}
 	#wrapper{position:relative;padding:20px}
 	#tri{display:block;
@@ -205,6 +206,9 @@ $(document).ready(function(e) {
 	/*#scr_2{background:#0f0}
 	#scr_3{background:#00f}*/
 	.scr{position:fixed;top:0;left:0;width:100%;height:100%}
+	#sp_bg,#sc_bg{height:100%;width:100%;position:absolute;top:0px;left:0px;}
+	#monitor_sp{width:100%;height:100%;position:relative;}
+	#monitor_sp canvas{height:100%;width:100%;position:absolute;top:0px;left:0px;}
 	/*568px*/
 	@media screen and (max-width: 1000px) {
 		.pc_only{display:none}
@@ -232,38 +236,13 @@ $(document).ready(function(e) {
   </style>
 </head>
 <body>
-<div id="scr_1" class="scr"></div>
-<div id="scr_2" class="scr"></div>
-<div id="scr_3" class="scr"></div>
+<div id="monitor_sp">
+<div id="sp_bg"></div>
+<canvas id="canvas_sp1"></canvas>
+<canvas id="canvas_sp2"></canvas>
+</div>
 <script>
 runTest()</script>
-<div id="wrapper">
-<div>
-<img src="http://xn--eckpi8a2b0m0b8k.com/smart_live/tri.png" width="240" id="tri">
-
-</div>
-<div class="pc_only">
-<p>INPUT：</p>
-	<form name="input_device_select">
-		<select name="ids" onChange="inputDeviceSelect(this);">
-			<option value="0">No Device</option>
-		</select>
-	</form>
-<script>setInputMenuID(document.input_device_select.ids);</script>
-<p id="result"></p>
-  <div id="msg_list" style="height:100px; overflow:auto;"></div>
-  <button type="button" name="green" value="#ff0000" onclick="sendMessage(255,0,0);" >RED</button>
-  <button type="button" name="green" value="#33B300" onclick="sendMessage(0,255,0);" >GREEN</button>
-  <button type="button" name="green" value="#33B300" onclick="sendMessage(0,0,255);" >BLUE</button>
-  <button type="button" name="green" value="#33B300" onclick="sendMessage(0,0,0);" >BLACK</button>
-  <button type="button" name="green" value="#33B300" onclick="sendMessage(255,153,0);" >ORANGE</button>
-  <!--<form action="" method="post" onsubmit="return false;">
-    <input type="text" class="text" style="width:95%; padding:10px" id="message"/>
-    <input type="submit" class="button" style="padding:10px" onclick="sendText();" value="送信" />
-    <!--<input type="submit" class="button" style="padding:10px" onclick="sendBroadcast();" value="自分以外に送信" />-->
-  <!--</form>-->
-</div>
-</div>
 <div id="pre"><h6>CONNECTING</h6></div>
 </body>
 </html>

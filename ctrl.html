@@ -66,7 +66,7 @@
     //ログの書き出し
 	//$("#msg_list").prepend("<p class='msg'>text:" + t1+ "</p>");
 	$("#msg_list").prepend("<p class='msg'>msg:" + msg+ "</p>");
-	$("#scr_1,#scr_1b").css({"backgroundColor":''+msg});
+	$("#sp_bg,#sc_bg").css({"backgroundColor":''+msg});
 	//$("#scr_1").css({"opacity":msg[0]});
 	//$("#scr_2").css({"opacity":msg[1]})
 	//$("#scr_3").css({"opacity":msg[2]})
@@ -172,10 +172,30 @@ $('.pallet').eq(3).css({backgroundColor:'#'+colorCode});
 function chgColorPalletE(colorCode){
 $('.pallet').eq(4).css({backgroundColor:'#'+colorCode});
 }
-
-
+//canvas
+function draw() {
+  var canvas = document.getElementById('canvas_sp1');
+  if ( ! canvas || ! canvas.getContext ) { return false; }
+  var ctx = canvas.getContext('2d');
+  /* 円 #1 */
+  ctx.beginPath();
+  ctx.fillStyle = 'rgb(192, 80, 77)'; // 赤
+  ctx.arc(70, 45, 35, 0, Math.PI*2, false);
+  ctx.fill();
+  /* 円 #2 */
+  ctx.beginPath();
+  ctx.fillStyle = 'rgb(155, 187, 89)'; // 緑
+  ctx.arc(45, 95, 35, 0, Math.PI*2, false);
+  ctx.fill();
+  /* 円 #3 */
+  ctx.beginPath();
+  ctx.fillStyle = 'rgb(128, 100, 162)'; // 紫
+  ctx.arc(95, 95, 35, 0, Math.PI*2, false);
+  ctx.fill();
+}
 
 $(document).ready(function(e) {
+	draw();
   setTimeout  ("done()",12000);
   $('.pallet').click(function(){
 	bgcolor=$(this).css('background-color');
@@ -212,7 +232,9 @@ $(document).ready(function(e) {
 	}
 	.monitor{float:right;width:20%;}
 	#monitor_sp{width:160px;height:284px;position:relative;}
+	#monitor_sp canvas{height:100%;width:100%;position:absolute;top:0px;left:0px;}
 	#monitor_sc{width:320px;height:180px;position:relative;}
+	#sp_bg,#sc_bg{height:100%;width:100%;position:absolute;top:0px;left:0px;}
 	#scr_1{background:#333}
 	.pallet{width:100px;height:100px;border-radius:50px;border:1px solid #333;background:rgb(0,0,0);}
 	#color_bank_wrap section{display:inline-block;}
@@ -251,15 +273,15 @@ $(document).ready(function(e) {
 <div class="monitor">
 <h6>Screen</h6>
 <div id="monitor_sc">
-<div id="scr_1b" class="scr"></div>
-<div id="scr_2b" class="scr"></div>
-<div id="scr_3b" class="scr"></div>
+<div id="sc_bg"></div>
+<canvas id="canvas_sc1"></canvas>
+<canvas id="canvas_sc2"></canvas>
 </div>
 <h6>Mobile</h6>
 <div id="monitor_sp">
-<div id="scr_1" class="scr"></div>
-<div id="scr_2" class="scr"></div>
-<div id="scr_3" class="scr"></div>
+<div id="sp_bg"></div>
+<canvas id="canvas_sp1"></canvas>
+<canvas id="canvas_sp2"></canvas>
 </div>
 </div>
 <script>
