@@ -17,5 +17,6 @@ function done(){$('#pre').fadeOut()}
 
 //docureaday
 $(document).ready(function(e) {
-  setTimeout  ("done()",1000)
+  setTimeout  ("done()",1000);
+  draw();
 });
