@@ -71,25 +71,7 @@
 
 
 
-//重力加速度
-pre_x=0;
-window.addEventListener("devicemotion", function(evt){
-var x = evt.accelerationIncludingGravity.x;	// 横方向の傾斜
-//var y = evt.accelerationIncludingGravity.y;	// 縦方向の傾斜
-//var z = evt.accelerationIncludingGravity.z;	// 上下方向の傾斜
 
-var abs_x=Math.abs(pre_x-x)
-if (abs_x>1){
-	
-pre_x=x;
-x=Math.round(x);
-abs_x=Math.round(abs_x);
-sendMessage(abs_x);
-//document.getElementById("result").innerHTML = "傾き:"+x+"・変化量:"+abs_x;//+"<br>y:"+y+"<br>z:"+z;
-
-}
-
-}, true);
   </script>
    <script type="text/javascript">
    
@@ -168,20 +150,9 @@ function change_bg(){
 		
 	}
 }
-
-function done(){$('#pre').fadeOut()}
-
-$(document).ready(function(e) {
-  setTimeout  ("done()",1000)
-});
-
-
-
-
-
-
-   
-   </script>
+</script>
+<!--SP用JS読み込み-->
+<script src="./js_core/sp.js"></script>
 <link rel="stylesheet" type="text/css" href="./css/sp.css">
 </head>
 <body>
