@@ -17,5 +17,6 @@
 		position:absolute;
 		
 		}
-	#text{position:absolute;top:50%;left:0px;width:100%;text-align: center;font-size:100px;color:#fff;}
+	#text{position:absolute;top:50%;left:0px;width:100%;text-align: center;font-size:80px;color:#fff;}
+	#text2{position:absolute;top:20%;left:0px;width:100%;text-align: center;font-size:60px;color:#fff;}
 h6{text-align:center;margin-top:30%}

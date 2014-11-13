@@ -29,8 +29,11 @@
 
   //クライアントからイベント送信（イベント名は自由に設定できます）
   function sendMessage(c_1,c_2,c_3) {
-    msg=c_1;
-    console.log(msg);
+    var msg= new Array(3);
+	msg[0] = c_1;
+var txt = $("#text_input").val(); //取得
+	msg[1] = txt;
+//msg[2] = c_3;
 	//msg="rgb("+c_1+","+c_2+","+c_3+")";
 	//var msg= new Array(3);
 	//msg[0] = c_1;
@@ -42,16 +45,17 @@
   }
   
   function sendText() {
-    //var txt=t1;
-	//var msg= new Array(3);
-	//msg[0] = c_1;
-//msg[1] = c_2;
-//msg[2] = c_3;
-
-	//var txt = $("#message").val(); //取得
-	//msg[1] =txt;
-    //$("#message").val(""); //空白にする
-   // s.emit("C_to_S_message", {value:msg[1]}); //サーバへ送信
+    var msg= new Array(3);
+	var txt = $("#text_input").val(); //取得
+	msg[1] = txt;
+   s.emit("C_to_S_message", {value:msg}); //サーバへ送信
+  }
+   function sendCount() {
+    var msg= new Array(3);
+	var txt = $("#text_input").val(); //取得
+	msg[1] = txt;
+	msg[2] = 1;
+   s.emit("C_to_S_message", {value:msg}); //サーバへ送信
   }
    
 
@@ -293,6 +297,14 @@ $(document).ready(function(e) {
 <input class="color" value="000000" onchange="chgColorPalletE(this.color);">
 </section>
 </div>
+<form method="post">
+<p>
+テキスト：<input type="text" name="text_input" size="40" maxlength="20" id="text_input">
+</p>
+<p>
+<input type="button" value="送信する" onClick="sendText()">
+</p>
+</form>
 <p>INPUT：</p>
 	<form name="input_device_select">
 		<select name="ids" onChange="inputDeviceSelect(this);">

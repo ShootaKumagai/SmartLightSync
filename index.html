@@ -11,14 +11,14 @@
   <!--core pluguin-->
   <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/three.js/r69/three.min.js"></script>
- 
+  <script src="./js_core_plugin/gShake.js"></script>
    <!--core pluguin-->
     
   <script type="text/javascript">
 
  var s = io.connect(); //リモート
   //var s = io.connect('http://localhost:3000'); //ローカル
-
+var count_up=0;
   //サーバから受け取るイベント
   s.on("connect", function () {});  // 接続時
   s.on("disconnect", function (client) {});  // 切断時
@@ -33,12 +33,11 @@
   //クライアントからイベント送信（イベント名は自由に設定できます）
   function sendMessage(c_1,c_2,c_3) {
     
-	msg=c_1;
-	text=c2;
-	//var msg= new Array(3);
-	//msg[0] = c_1;
-//msg[1] = c_2;
-//msg[2] = c_3;
+
+	var msg= new Array(3);
+	msg[0] = c_1;
+msg[1] = c_2;
+msg[2] = c_3;
 	//var msg = $("#message").val(); //取得
     //$("#message").val(""); //空白にする
     s.emit("C_to_S_message", {value:msg}); //サーバへ送信
@@ -56,7 +55,13 @@
     //$("#message").val(""); //空白にする
    // s.emit("C_to_S_message", {value:msg[1]}); //サーバへ送信
   }
-   
+   function sendCount() {
+    var msg= new Array(3);
+	var txt = $("#text").val(); //取得
+	msg[1] = txt;
+	msg[2] = 1;
+   s.emit("C_to_S_message", {value:msg}); //サーバへ送信
+  }
 
   function sendBroadcast() {
     var msg = $("#message").val(); //取得
@@ -65,14 +70,22 @@
   }
 
   //jqueryでメッセージを追加
-  function addMessage (value,color,size) {
-	  var comp=value
-    var msg = comp//.replace( /[!@$%<>'"&|]/g, '' ); //タグ記号とかいくつか削除
+  function addMessage (msg) {
+	//  var comp=value
+    //var msg = comp//.replace( /[!@$%<>'"&|]/g, '' ); //タグ記号とかいくつか削除
 	//var t1=comp[1].replace( /[!@$%<>'"&|]/g, '' ); //タグ記号とかいくつか削除
     //ログの書き出し
 	//$("#msg_list").prepend("<p class='msg'>text:" + t1+ "</p>");
 	$("#msg_list").prepend("<p class='msg'>msg:" + msg+ "</p>");
-	$("#sp_bg,#sc_bg").css({"backgroundColor":''+msg});
+	$("#sp_bg,#sc_bg").css({"backgroundColor":''+msg[0]});
+
+	$("#text").empty().append(msg[1]);
+	count_up=count_up+msg[2];
+	
+	
+	var t_count_up=String(count_up);
+	console.log(t_count_up);
+	$("#text2").empty().append(t_count_up);
 	//$("#scr_1").css({"opacity":msg[0]});
 	//$("#scr_2").css({"opacity":msg[1]})
 	//$("#scr_3").css({"opacity":msg[2]})
@@ -170,7 +183,8 @@ function change_bg(){
 <div id="sp_bg"></div>
 <canvas id="canvas_sp1"></canvas>
 <canvas id="canvas_sp2"></canvas>
-<div id="text">TEST</div>
+<div id="text"></div>
+<div id="text2"></div>
 </div>
 
 <div id="pre"><h6>CONNECTING</h6></div>
