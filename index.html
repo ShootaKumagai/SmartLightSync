@@ -2,10 +2,18 @@
 <html>
 <head>
   <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
   <title>smartLive</title>
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
   <script src="/socket.io/socket.io.js"></script>
-    <script src="./js_core/common_func.js"></script>
+  <!--core pluguin-->
+  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/three.js/r69/three.min.js"></script>
+ 
+   <!--core pluguin-->
+    
   <script type="text/javascript">
 
  var s = io.connect(); //リモート
@@ -26,6 +34,7 @@
   function sendMessage(c_1,c_2,c_3) {
     
 	msg=c_1;
+	text=c2;
 	//var msg= new Array(3);
 	//msg[0] = c_1;
 //msg[1] = c_2;
@@ -156,13 +165,16 @@ function change_bg(){
 <link rel="stylesheet" type="text/css" href="./css/sp.css">
 </head>
 <body>
+	<p id="info"></>
 <div id="monitor_sp">
 <div id="sp_bg"></div>
 <canvas id="canvas_sp1"></canvas>
 <canvas id="canvas_sp2"></canvas>
+<div id="text">TEST</div>
 </div>
-<script>
-runTest()</script>
+
 <div id="pre"><h6>CONNECTING</h6></div>
+<script type="text/javascript" src="http://jsdo.it/lib/tmlib.js-0.1.4/js"></script>
+<script src="./js_core/common_func.js"></script>
 </body>
 </html>

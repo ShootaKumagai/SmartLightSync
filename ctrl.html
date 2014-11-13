@@ -3,12 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <title>smartLive</title>
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="./js_core/common_func.js"></script>
+
+  <script src="/socket.io/socket.io.js"></script> 
   <!--core pluguin-->
+  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/three.js/r69/three.min.js"></script>
   <script src="./js_core_plugin/jscolor/jscolor.js"></script>
    <!--core pluguin-->
+  
   <script type="text/javascript">
 
  var s = io.connect(); //リモート
@@ -88,7 +90,7 @@
 	var input_menu_id=null;
 	
 //Midi API 判定
-	function runTest(){navigator.requestMIDIAccess().then( success, failure );}
+	//function runTest(){navigator.requestMIDIAccess().then( success, failure );}
 	function success(midiAccess)
 	{
 		m=midiAccess;
@@ -176,7 +178,7 @@ $('.pallet').eq(4).css({backgroundColor:'#'+colorCode});
 
 
 $(document).ready(function(e) {
-	draw();
+	//draw();
   $('.pallet').click(function(){
 	bgcolor=$(this).css('background-color');
 	sendMessage(bgcolor);
@@ -250,7 +252,8 @@ $(document).ready(function(e) {
   </style>
 </head>
 <body>
-<div class="monitor">
+
+<div class="monitor" style="display:none">
 <h6>Screen</h6>
 <div id="monitor_sc">
 <div id="sc_bg"></div>
@@ -264,8 +267,7 @@ $(document).ready(function(e) {
 <canvas id="canvas_sp2"></canvas>
 </div>
 </div>
-<script>
-runTest()</script>
+
 
 <div class="control_pannel">
 <h1>SmartLiveDirectionSystme ControlPannel</h1>
@@ -307,7 +309,7 @@ runTest()</script>
     <!--<input type="submit" class="button" style="padding:10px" onclick="sendBroadcast();" value="自分以外に送信" />-->
   <!--</form>-->
 </div>
-
-
+<script type="text/javascript" src="http://jsdo.it/lib/tmlib.js-0.1.4/js"></script>
+ <script src="./js_core/common_func.js"></script>
 </body>
 </html>
