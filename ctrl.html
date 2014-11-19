@@ -50,13 +50,7 @@ var txt = $("#text_input").val(); //取得
 	msg[1] = txt;
    s.emit("C_to_S_message", {value:msg}); //サーバへ送信
   }
-   function sendCount() {
-    var msg= new Array(3);
-	var txt = $("#text_input").val(); //取得
-	msg[1] = txt;
-	msg[2] = 1;
-   s.emit("C_to_S_message", {value:msg}); //サーバへ送信
-  }
+
    
 
   function sendBroadcast() {
@@ -203,19 +197,10 @@ $(document).ready(function(e) {
       margin:0;
       padding:0;
     }
-	body{color:#fff;background:#1c1c1c}
+	body{color:#fff;background:#1c1c1c;padding:30px;}
 	p.msg{font-size:10px;line-height:1.2}
-
-	#tri{display:block;
-	 animation: rotate 3s; 
-  animation-iteration-count: infinite;
-  -webkit-animation: rotate 3s; /* Safari & Chrome */
-  -webkit-animation-iteration-count:  infinite;
-    -webkit-animation-timing-function: linear;
+p.noti{font-size:10px;color:#f80;margin:10px;}
 	
-	margin: 50px auto 20px auto;
-
-	}
 	.monitor{float:right;width:20%;}
 	#monitor_sp{width:160px;height:284px;position:relative;}
 	#monitor_sp canvas{height:100%;width:100%;position:absolute;top:0px;left:0px;}
@@ -230,29 +215,12 @@ $(document).ready(function(e) {
 	.control_pannel{border-top:1px dotted #ccc;float:left;width:80%;}
 	.color{width:100px;}
 	/*568px*/
-	@media screen and (max-width: 1000px) {
-		.pc_only{display:none}
-		#tri{width:80%;}
-		#pre{background:#fff url(http://www.benricho.org/loading_images/img-speed/loading-109-1.gif) no-repeat center;
-		background-size:10%;
-		width:100%;
-		height:100%;
-		top:0;
-		color:#000;
-		position:absolute;
-		
-		}
+	
 		h6{text-align:center;margin-top:30%}
-	}
+	
+	
 
-	@keyframes rotate { 
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); } 
-}
-@-webkit-keyframes rotate { 
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); } 
-} 
+	
   </style>
 </head>
 <body>
@@ -297,22 +265,24 @@ $(document).ready(function(e) {
 <input class="color" value="000000" onchange="chgColorPalletE(this.color);">
 </section>
 </div>
+<p class="noti">▲カラーコードクリックでカラーピック、それぞれの円形パレットをクリックして切り替え</p>
 <form method="post">
 <p>
-テキスト：<input type="text" name="text_input" size="40" maxlength="20" id="text_input">
+テキスト：<input type="text" name="text_input" size="40" maxlength="20" id="text_input" value="Let's SHAKE!">
 </p>
 <p>
 <input type="button" value="送信する" onClick="sendText()">
 </p>
 </form>
-<p>INPUT：</p>
+<p class="noti">▲送りたいテキストを入力して送信</p>
+<!--<p>INPUT：</p>
 	<form name="input_device_select">
 		<select name="ids" onChange="inputDeviceSelect(this);">
 			<option value="0">No Device</option>
 		</select>
 	</form>
 <script>setInputMenuID(document.input_device_select.ids);</script>
-<p id="result"></p>
+<p id="result"></p>-->
   <div id="msg_list" style="height:100px; overflow:auto;"></div>
  
   <!--<form action="" method="post" onsubmit="return false;">
