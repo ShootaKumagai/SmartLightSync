@@ -28,11 +28,12 @@
 //var msg=new Array[3];
 
   //クライアントからイベント送信（イベント名は自由に設定できます）
-  function sendMessage(c_1,c_2,c_3) {
+  function sendMessage(c_1,c_2,c_3,c_4) {
     var msg= new Array(3);
 	msg[0] = c_1;
 var txt = $("#text_input").val(); //取得
 	msg[1] = txt;
+	msg[3]=c_4;
 //msg[2] = c_3;
 	//msg="rgb("+c_1+","+c_2+","+c_3+")";
 	//var msg= new Array(3);
@@ -134,7 +135,7 @@ function change_bg(){
 	{ch_2=parseInt(event.data[2])/127*100+"%";}
 	if(event.data[1]==2)
 	{ch_3=parseInt(event.data[2])/127*100+"%";}
-	sendMessage(ch_1,ch_2,ch_3);
+	sendMessage(ch_1,ch_2,ch_3,serial);
 	$('body').css({"backgroundColor":"rgb("+ch_r+","+ch_g+","+ch_b+")"})
 	//
 	//var str2 ="<tr><td>" + ch_r+ "</td><td>|</td><td>"+ch_g+"</td><td>|</td><td>"+ch_b+"</td></tr>\n";

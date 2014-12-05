@@ -9,19 +9,18 @@
 if (document.arduino) {
     var arduino = document.arduino;
     //arduino をオープン。引数はデバイスポートです。
-    arduino.open("/dev/cu.usbmodem1411");
+    arduino.open("/dev/tty.usbmodem1411");
     //13番ピンを出力に設定 (true: OUTPUT, false: INPUT)
-    arduino.pinMode(13, true);
+    //arduino.pinMode(0, true);
     //13番ピンに出力 min:0 - max:255
     
- ledvalue=0;
+ //ledvalue=0;
     function led(){
-    	if(ledvalue==0){ledvalue=255}
-    		else if(ledvalue==255){ledvalue=0;}
-    arduino.analogWrite(13, ledvalue);
+    	
+    arduino.digitalWrite(0, "1c255w");
     }
 
-    setInterval('led()',500)
+    led();
 }
  </script>
 </body>

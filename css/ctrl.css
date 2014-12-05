@@ -6,3 +6,11 @@
 body {
   background: #1e1e1e;
 }
+#wrap {
+  background: url(../img/ui/bg.png);
+}
+#main {
+  width: 1200px;
+  margin: 0 auto;
+  height: 1200px;
+}
