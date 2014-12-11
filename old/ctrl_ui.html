@@ -6,10 +6,13 @@
 <title>無題ドキュメント</title>
 <link type="text/css" rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/cupertino/jquery-ui.min.css" />
 <link rel="stylesheet" type="text/css" href="./css/ctrl.css">
+<link rel="stylesheet" type="text/css" href="./css/toggles-full.css">
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
+<script src="./jquery_modules/toggles.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(function() {
+  $('.toggle').toggles({text:{on:'HI',off:'BYE'}});
   // 2スライダーを適用
   $('#color_slider').slider({
     min: 0,
@@ -44,9 +47,9 @@ $('#video_slider').slider({
 });
 </script>
 <script type="text/javascript">
-//$(window).bind("resize", function(){
-// 		$("html").css( "zoom" , $(window).width() / 1200 );
-// 	}).trigger("resize");
+$(window).bind("resize", function(){
+ 		$("html").css( "zoom" , $(window).width() / 1200 );
+ 	}).trigger("resize");
 </script>
 
 </head>
@@ -61,16 +64,16 @@ $('#video_slider').slider({
 </div>
 
 <div class="col_m">
-<input type="submit" class="btn_submit switch" value="SWITCH A⇄B"></input>
-<div id="color_slider" ></div>
 
+<div id="color_slider" ></div>
+<input type="submit" class="btn_submit switch" value="SWITCH A⇄B"></input>
 </div>
 
 <div class="col_r">
 <div class="pallet"></div>
 </div>
 <!--1スライダーを表示する領域-->
-<h6>COLOR THEME</h6>
+
 </section>
 <section id="video">
 	<h6>COLOR THEME</h6>
@@ -81,6 +84,7 @@ $('#video_slider').slider({
 <div class="col_m">
 <input type="submit" class="btn_submit switch" value="SWITCH A⇄B"></input>
 <div id="video_slider" ></div>
+<div class="toggle"></div>
 
 </div>
 
