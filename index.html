@@ -77,8 +77,8 @@ msg[2] = c_3;
     //ログの書き出し
 	//$("#msg_list").prepend("<p class='msg'>text:" + t1+ "</p>");
 	$("#msg_list").prepend("<p class='msg'>msg:" + msg+ "</p>");
-	$("#sp_bg,#sc_bg").css({"backgroundColor":''+msg[0]});
-console.log(msg[3]);
+	$("#sp_bg,#sc_bg").css({"backgroundColor":'rgb('+msg[0]+')'});
+console.log(msg[0]);
 	$("#text").empty().append(msg[1]);
 	count_up=count_up+msg[2];
 	
