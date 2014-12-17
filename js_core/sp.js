@@ -20,6 +20,7 @@ $(document).ready(function(e) {
 	$(this).gShake(function() { 
         sendCount();
     });
+    sendInitial();
   setTimeout  ("done()",1000);
   //draw();
 });

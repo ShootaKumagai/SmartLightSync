@@ -60,7 +60,7 @@ msg[2] = c_3;
 	//rgb_raw=rgb_raw.replace("(",'');
 	//rgb_raw=rgb_raw.replace(")",'');
 	//rgb_s = rgb_raw.split( "," );
-	serial_cmd='1c'+rgb_s[0]+'w'+'2c'+rgb_s[1]+'w'+'3c'+rgb_s[2]+'w'+'4c255w'
+	serial_cmd='1c'+rgb_s[0]+'w'+'2c'+rgb_s[1]+'w'+'3c'+rgb_s[2]+'w'+'4c'+rgb_s[3]+'w';
 	serial_cmd=serial_cmd.replace(/\s+/g, "");
 console.log(serial_cmd);
 	

@@ -53,6 +53,7 @@ section#color_theme{
 }
 
 section#text{
+	display: none;
 	margin-top:30px;
 	line-height:1;
 	padding:36px 0;
@@ -90,14 +91,26 @@ line-height:100px;
 padding:0 26px;
 }
 #color_theme h6{
-bottom:-100px;
-left:56px;
+	//
+position: relative;
+margin-top: -60px;
+height:60px;
+line-height: 60px;
+//bottom:-100px;
+//left:56px;
 
 }
 
 #video h6{
-top:-100px;
-right:56px;
+	//
+position: relative;
+margin: -70px auto 0 auto;
+height:60px;
+line-height: 60px;
+width:300px;
+
+//top:-100px;
+//right:56px;
 
 }
 
@@ -177,6 +190,7 @@ input.text_form{
 	span{
 		background:#fff;
 		height:50px;
+		
 		border-radius:0;
 		top: -11px;
 	}
@@ -193,6 +207,8 @@ input.text_form{
 		height:50px;
 		border-radius:0;
 		top: -11px;
+		width:2em !important;
+		margin-left:-1em !important;
 	}
 }
 //logo
@@ -260,13 +276,14 @@ input.text_form{
 	float:right;
 	span{
 		background:#fff;
-		height:22px;
+		height:44px;
 		width:50px;
 		border-radius:0;
 		left: -12px;
 	}
 }
 #master_screen_slider{
+	opacity: 0;
 	float:left;
 	height:388px;
 	width:28px;

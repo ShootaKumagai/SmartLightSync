@@ -27,17 +27,21 @@ var count_up=0;
   });
 //ここから変数
 
-
+clientText="";
+clientRGB=[0,0,0,0];
 //var msg=new Array[3];
 
   //クライアントからイベント送信（イベント名は自由に設定できます）
-  function sendMessage(c_1,c_2,c_3) {
+  function sendMessage(c_1,c_2,c_3,c_4) {
     
 
-	var msg= new Array(3);
+	var msg= new Array(4);
 	msg[0] = c_1;
 msg[1] = c_2;
 msg[2] = c_3;
+msg[3] = c_4;
+console.log(msg[0])
+console.log(msg[3])
 	//var msg = $("#message").val(); //取得
     //$("#message").val(""); //空白にする
     s.emit("C_to_S_message", {value:msg}); //サーバへ送信
@@ -62,7 +66,13 @@ msg[2] = c_3;
 	msg[2] = 1;
    s.emit("C_to_S_message", {value:msg}); //サーバへ送信
   }
+function sendInitial(){
 
+var ini_msg = "connect";
+//console.log(msg[3])//
+sendMessage(clientRGB,clientText,0,ini_msg);
+
+}
   function sendBroadcast() {
     var msg = $("#message").val(); //取得
     $("#message").val(""); //空白にする
@@ -76,10 +86,16 @@ msg[2] = c_3;
 	//var t1=comp[1].replace( /[!@$%<>'"&|]/g, '' ); //タグ記号とかいくつか削除
     //ログの書き出し
 	//$("#msg_list").prepend("<p class='msg'>text:" + t1+ "</p>");
-	$("#msg_list").prepend("<p class='msg'>msg:" + msg+ "</p>");
-	$("#sp_bg,#sc_bg").css({"backgroundColor":'rgb('+msg[0]+')'});
-console.log(msg[0]);
+	//console.log(msg[1]);
+	clientRGB=msg[0]
+	clientText=msg[1]
 	$("#text").empty().append(msg[1]);
+	dim=msg[0][3]/255;
+	//console.log(dim);
+	$("#msg_list").prepend("<p class='msg'>msg:" + msg+ "</p>");
+	$("#sp_bg,#sc_bg").css({"backgroundColor":'rgba('+msg[0][0]+','+msg[0][1]+','+msg[0][2]+','+dim+')'});
+
+	
 	count_up=count_up+msg[2];
 	
 	

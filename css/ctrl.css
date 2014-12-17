@@ -37,6 +37,7 @@ section#color_theme {
   display: none;
 }
 section#text {
+  display: none;
   margin-top: 30px;
   line-height: 1;
   padding: 36px 0;
@@ -68,12 +69,17 @@ h6 {
   padding: 0 26px;
 }
 #color_theme h6 {
-  bottom: -100px;
-  left: 56px;
+  position: relative;
+  margin-top: -60px;
+  height: 60px;
+  line-height: 60px;
 }
 #video h6 {
-  top: -100px;
-  right: 56px;
+  position: relative;
+  margin: -70px auto 0 auto;
+  height: 60px;
+  line-height: 60px;
+  width: 300px;
 }
 #text h6 {
   position: relative;
@@ -154,6 +160,8 @@ input.text_form {
   height: 50px;
   border-radius: 0;
   top: -11px;
+  width: 2em !important;
+  margin-left: -1em !important;
 }
 #logo {
   display: block;
@@ -227,12 +235,13 @@ input.text_form {
 }
 #master_light_slider span {
   background: #fff;
-  height: 22px;
+  height: 44px;
   width: 50px;
   border-radius: 0;
   left: -12px;
 }
 #master_screen_slider {
+  opacity: 0;
   float: left;
   height: 388px;
   width: 28px;
