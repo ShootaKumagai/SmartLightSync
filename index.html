@@ -1,210 +1,232 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <title>smartLive</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>smartLive</title>
 
-  <script src="/socket.io/socket.io.js"></script>
-  <!--core pluguin-->
-  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/three.js/r69/three.min.js"></script>
-  <script src="./js_core_plugin/gShake.js"></script>
-   <!--core pluguin-->
-    
-  <script type="text/javascript">
+    <script src="/socket.io/socket.io.js"></script>
+    <!--core pluguin-->
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/three.js/r69/three.min.js"></script>
+    <script src="./js_core_plugin/gShake.js"></script>
+    <!--core pluguin-->
 
- var s = io.connect(); //リモート
-  //var s = io.connect('http://localhost:3000'); //ローカル
-var count_up=0;
-  //サーバから受け取るイベント
-  s.on("connect", function () {});  // 接続時
-  s.on("disconnect", function (client) {});  // 切断時
-  s.on("S_to_C_message", function (data) {
-    addMessage(data.value);
-  });
-//ここから変数
+    <script type="text/javascript">
+    var s = io.connect(); //リモート
+    //var s = io.connect('http://localhost:3000'); //ローカル
+    var count_up = 0;
+    //サーバから受け取るイベント
+    s.on("connect", function() {}); // 接続時
+    s.on("disconnect", function(client) {}); // 切断時
+    s.on("S_to_C_message", function(data) {
+        addMessage(data.value);
+    });
+    //ここから変数
 
-clientText="";
-clientRGB=[0,0,0,0];
-//var msg=new Array[3];
+    clientText = "";
+    clientRGB = [0, 0, 0, 0];
+    //var msg=new Array[3];
 
-  //クライアントからイベント送信（イベント名は自由に設定できます）
-  function sendMessage(c_1,c_2,c_3,c_4) {
-    
-
-	var msg= new Array(4);
-	msg[0] = c_1;
-msg[1] = c_2;
-msg[2] = c_3;
-msg[3] = c_4;
-console.log(msg[0])
-console.log(msg[3])
-	//var msg = $("#message").val(); //取得
-    //$("#message").val(""); //空白にする
-    s.emit("C_to_S_message", {value:msg}); //サーバへ送信
-  }
-  
-  function sendText() {
-    //var txt=t1;
-	//var msg= new Array(3);
-	//msg[0] = c_1;
-//msg[1] = c_2;
-//msg[2] = c_3;
-
-	//var txt = $("#message").val(); //取得
-	//msg[1] =txt;
-    //$("#message").val(""); //空白にする
-   // s.emit("C_to_S_message", {value:msg[1]}); //サーバへ送信
-  }
-   function sendCount() {
-    var msg= new Array(3);
-	var txt = $("#text").val(); //取得
-	msg[1] = txt;
-	msg[2] = 1;
-   s.emit("C_to_S_message", {value:msg}); //サーバへ送信
-  }
-function sendInitial(){
-
-var ini_msg = "connect";
-//console.log(msg[3])//
-sendMessage(clientRGB,clientText,0,ini_msg);
-
-}
-  function sendBroadcast() {
-    var msg = $("#message").val(); //取得
-    $("#message").val(""); //空白にする
-    s.emit("C_to_S_broadcast", {value:msg}); // サーバへ送信
-  }
-
-  //jqueryでメッセージを追加
-  function addMessage (msg) {
-	//  var comp=value
-    //var msg = comp//.replace( /[!@$%<>'"&|]/g, '' ); //タグ記号とかいくつか削除
-	//var t1=comp[1].replace( /[!@$%<>'"&|]/g, '' ); //タグ記号とかいくつか削除
-    //ログの書き出し
-	//$("#msg_list").prepend("<p class='msg'>text:" + t1+ "</p>");
-	//console.log(msg[1]);
-	clientRGB=msg[0]
-	clientText=msg[1]
-	$("#text").empty().append(msg[1]);
-	dim=msg[0][3]/255;
-	//console.log(dim);
-	$("#msg_list").prepend("<p class='msg'>msg:" + msg+ "</p>");
-	$("#sp_bg,#sc_bg").css({"backgroundColor":'rgba('+msg[0][0]+','+msg[0][1]+','+msg[0][2]+','+dim+')'});
-
-	
-	count_up=count_up+msg[2];
-	
-	
-	var t_count_up=String(count_up);
-	//console.log(t_count_up);
-	$("#text2").empty().append(t_count_up);
-	//$("#scr_1").css({"opacity":msg[0]});
-	//$("#scr_2").css({"opacity":msg[1]})
-	//$("#scr_3").css({"opacity":msg[2]})
-  }    
+    //クライアントからイベント送信（イベント名は自由に設定できます）
+    function sendMessage(c_1, c_2, c_3, c_4) {
 
 
+        var msg = new Array(4);
+        msg[0] = c_1;
+        msg[1] = c_2;
+        msg[2] = c_3;
+        msg[3] = c_4;
+        console.log(msg[0])
+        console.log(msg[3])
+            //var msg = $("#message").val(); //取得
+            //$("#message").val(""); //空白にする
+        s.emit("C_to_S_message", {
+            value: msg
+        }); //サーバへ送信
+    }
+
+    function sendText() {
+        //var txt=t1;
+        //var msg= new Array(3);
+        //msg[0] = c_1;
+        //msg[1] = c_2;
+        //msg[2] = c_3;
+
+        //var txt = $("#message").val(); //取得
+        //msg[1] =txt;
+        //$("#message").val(""); //空白にする
+        // s.emit("C_to_S_message", {value:msg[1]}); //サーバへ送信
+    }
+
+    function sendCount() {
+        var msg = new Array(3);
+        var txt = $("#text").val(); //取得
+        msg[1] = txt;
+        msg[2] = 1;
+        s.emit("C_to_S_message", {
+            value: msg
+        }); //サーバへ送信
+    }
+
+    function sendInitial() {
+
+        var ini_msg = "connect";
+        //console.log(msg[3])//
+        sendMessage(clientRGB, clientText, 0, ini_msg);
+
+    }
+
+    function sendBroadcast() {
+        var msg = $("#message").val(); //取得
+        $("#message").val(""); //空白にする
+        s.emit("C_to_S_broadcast", {
+            value: msg
+        }); // サーバへ送信
+    }
+
+    //jqueryでメッセージを追加
+    function addMessage(msg) {
+        //  var comp=value
+        //var msg = comp//.replace( /[!@$%<>'"&|]/g, '' ); //タグ記号とかいくつか削除
+        //var t1=comp[1].replace( /[!@$%<>'"&|]/g, '' ); //タグ記号とかいくつか削除
+        //ログの書き出し
+        //$("#msg_list").prepend("<p class='msg'>text:" + t1+ "</p>");
+        //console.log(msg[1]);
+        clientRGB = msg[0]
+        clientText = msg[1]
+        $("#text").empty().append(msg[1]);
+        dim = msg[0][3] / 255;
+        //console.log(dim);
+        $("#msg_list").prepend("<p class='msg'>msg:" + msg + "</p>");
+        $("#sp_bg,#sc_bg").css({
+            "backgroundColor": 'rgba(' + msg[0][0] + ',' + msg[0][1] + ',' + msg[0][2] + ',' + dim + ')'
+        });
 
 
-  </script>
-   <script type="text/javascript">
-   
-   // JavaScript Document
-{
-	var m=null;
-	var inputs=null;
-	var input=null;
-	var input_device=0;
-	var input_menu_id=null;
-	
-//Midi API 判定
-	function runTest(){navigator.requestMIDIAccess().then( success, failure );}
-	function success(midiAccess)
-	{
-		m=midiAccess;
-		inputs=m.inputs();
-		setInputDeviceSelect();
-	}
-	function failure(error){alert( "NG" )}
-//インプットデバイス	
-	function setInputMenuID(parts){
-		input_menu_id = parts;
-	}
-	function setInputDeviceSelect(){
-		var i=0;
-		if(m!=null){
-			if(inputs.length>0){
-				for(i=0; i<inputs.length; i++)
-					input_menu_id.options[i+1] = new Option(inputs[i].name, i+1);
-			}
-		} 
-	}
+        count_up = count_up + msg[2];
 
-	function inputDeviceSelect(item){
-		input_device = item.options[item.selectedIndex].value-1;
-		if(input_device==-1) input_device=0;
-		input= inputs[input_device];			
-		input.onmidimessage = handleMIDIMessage1; 
-	}
 
-	
-//イベント処理
-//function raw_event(){
-	
-//	var raw_str ="<tr><td>" +event.data[1]+ "</td><td>|</td><td>" +event.data[2]+ " </td><td>|</td><td>" +event.data[0] +"</td></tr>\n";
-//		$('table#rawlog').prepend(raw_str)
-	
-//	}
-	
-function change_bg(){
-	if(event.data[1]==0)
-	{ch_1=parseInt(event.data[2])/127*100+"%";
-	}
-	if(event.data[1]==1)
-	{ch_2=parseInt(event.data[2])/127*100+"%";}
-	if(event.data[1]==2)
-	{ch_3=parseInt(event.data[2])/127*100+"%";}
-	sendMessage(ch_1,ch_2,ch_3);
-	$('body').css({"backgroundColor":"rgb("+ch_r+","+ch_g+","+ch_b+")"})
-	//
-	//var str2 ="<tr><td>" + ch_r+ "</td><td>|</td><td>"+ch_g+"</td><td>|</td><td>"+ch_b+"</td></tr>\n";
-	//$('table#log').prepend(str2);
-	}
-	function handleMIDIMessage1( event ) {
-		//
-		//raw_event()
-		change_bg()
-		//ノートオンオフ判定
-		
-		
-		
-			//
-		
+        var t_count_up = String(count_up);
+        //console.log(t_count_up);
+        $("#text2").empty().append(t_count_up);
+        //$("#scr_1").css({"opacity":msg[0]});
+        //$("#scr_2").css({"opacity":msg[1]})
+        //$("#scr_3").css({"opacity":msg[2]})
+    }
+    </script>
+    <script type="text/javascript">
+    // JavaScript Document
+    {
+        var m = null;
+        var inputs = null;
+        var input = null;
+        var input_device = 0;
+        var input_menu_id = null;
 
-		
-	}
-}
-</script>
-<!--SP用JS読み込み-->
-<script src="./js_core/sp.js"></script>
-<link rel="stylesheet" type="text/css" href="./css/sp.css">
+        //Midi API 判定
+        function runTest() {
+            navigator.requestMIDIAccess().then(success, failure);
+        }
+
+        function success(midiAccess) {
+            m = midiAccess;
+            inputs = m.inputs();
+            setInputDeviceSelect();
+        }
+
+        function failure(error) {
+                alert("NG")
+            }
+            //インプットデバイス	
+        function setInputMenuID(parts) {
+            input_menu_id = parts;
+        }
+
+        function setInputDeviceSelect() {
+            var i = 0;
+            if (m != null) {
+                if (inputs.length > 0) {
+                    for (i = 0; i < inputs.length; i++)
+                        input_menu_id.options[i + 1] = new Option(inputs[i].name, i + 1);
+                }
+            }
+        }
+
+        function inputDeviceSelect(item) {
+            input_device = item.options[item.selectedIndex].value - 1;
+            if (input_device == -1) input_device = 0;
+            input = inputs[input_device];
+            input.onmidimessage = handleMIDIMessage1;
+        }
+
+
+        //イベント処理
+        //function raw_event(){
+
+        //	var raw_str ="<tr><td>" +event.data[1]+ "</td><td>|</td><td>" +event.data[2]+ " </td><td>|</td><td>" +event.data[0] +"</td></tr>\n";
+        //		$('table#rawlog').prepend(raw_str)
+
+        //	}
+
+        function change_bg() {
+            if (event.data[1] == 0) {
+                ch_1 = parseInt(event.data[2]) / 127 * 100 + "%";
+            }
+            if (event.data[1] == 1) {
+                ch_2 = parseInt(event.data[2]) / 127 * 100 + "%";
+            }
+            if (event.data[1] == 2) {
+                ch_3 = parseInt(event.data[2]) / 127 * 100 + "%";
+            }
+            sendMessage(ch_1, ch_2, ch_3);
+            $('body').css({
+                    "backgroundColor": "rgb(" + ch_r + "," + ch_g + "," + ch_b + ")"
+                })
+                //
+                //var str2 ="<tr><td>" + ch_r+ "</td><td>|</td><td>"+ch_g+"</td><td>|</td><td>"+ch_b+"</td></tr>\n";
+                //$('table#log').prepend(str2);
+        }
+
+        function handleMIDIMessage1(event) {
+            //
+            //raw_event()
+            change_bg()
+                //ノートオンオフ判定
+
+
+
+            //
+
+
+
+        }
+    }
+    </script>
+    <!--SP用JS読み込み-->
+    <script src="./js_core/sp.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/sp.css">
 </head>
-<body>
-	<p id="info"></>
-<div id="monitor_sp">
-<div id="sp_bg"></div>
-<canvas id="canvas_sp1"></canvas>
-<canvas id="canvas_sp2"></canvas>
-<div id="text"></div>
-<div id="text2"></div>
-</div>
 
-<div id="pre"><h6>CONNECTING</h6></div>
-<script type="text/javascript" src="http://jsdo.it/lib/tmlib.js-0.1.4/js"></script>
-<script src="./js_core/common_func.js"></script>
+<body>
+    <p id="info">
+        </>
+        <div id="monitor_sp">
+            <div id="sp_bg"></div>
+            <canvas id="canvas_sp1"></canvas>
+            <canvas id="canvas_sp2"></canvas>
+            <div id="text"></div>
+            <div id="text2"></div>
+        </div>
+
+        <div id="pre">
+            <h6>CONNECTING</h6>
+        </div>
+        <script type="text/javascript" src="http://jsdo.it/lib/tmlib.js-0.1.4/js"></script>
+        <script src="./js_core/common_func.js"></script>
 </body>
+
 </html>
