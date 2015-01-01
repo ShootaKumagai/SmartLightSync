@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=1200px, user-scalable=no">
     <title>無題ドキュメント</title>
+    <link rel="shortcut icon" href="./img/favicon.ico" />
     <link type="text/css" rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/cupertino/jquery-ui.min.css" />
     <link rel="stylesheet" type="text/css" href="./css/ctrl.css">
     <script src="/socket.io/socket.io.js"></script>
@@ -32,7 +33,7 @@
 
     //var msg=new Array[3];
 
-    //クライアントからイベント送信（イベント名は自由に設定できます）
+    //操作画面から送信
     function sendMessage(c_1, c_2, c_3, c_4) {
         var msg = new Array(4);
         msg[0] = c_1;
@@ -52,6 +53,7 @@
         }); //サーバへ送信
     }
 
+
     function sendText() {
         var msg = new Array(3);
         var txt = $("#text_form").val(); //取得
@@ -64,7 +66,7 @@
     }
 
 
-
+ //操作画面から送信(対象に操作画面を含まない)
     function sendBroadcast() {
         var msg = $("#message").val(); //取得
         $("#message").val(""); //空白にする
@@ -73,26 +75,12 @@
         }); // サーバへ送信
     }
 
-    //jqueryでメッセージを追加
+    //他からイベントを受け取った時→クライアントからの接続要求に応じて現在の設定を送り返す
     function addMessage(value, color, size, connect) {
-        console.log(value[3]);
         var initial_flg = value[3];
-        //console.log(value);
         if (initial_flg == "connect") {
-
-            //masterRGB=setRGB;
             sendMessage(masterRGB, 0, 0, 0);
         }
-        //var comp=value
-        //var msg = comp//.replace( /[!@$%<>'"&|]/g, '' ); //タグ記号とかいくつか削除
-        //var t1=comp[1].replace( /[!@$%<>'"&|]/g, '' ); //タグ記号とかいくつか削除
-        //ログの書き出し
-        //$("#msg_list").prepend("<p class='msg'>text:" + t1+ "</p>");
-        //$("#msg_list").prepend("<p class='msg'>msg:" + msg+ "</p>");
-        //$("#sp_bg,#sc_bg").css({"backgroundColor":''+msg});
-        //$("#scr_1").css({"opacity":msg[0]});
-        //$("#scr_2").css({"opacity":msg[1]})
-        //$("#scr_3").css({"opacity":msg[2]})
     }
     </script>
     <script src="./js_core/ui_core.js"></script>

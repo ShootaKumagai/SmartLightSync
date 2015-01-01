@@ -7,7 +7,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <title>smartLive</title>
-
+    <link rel="shortcut icon" href="./img/favicon.ico" />
     <script src="/socket.io/socket.io.js"></script>
     <!--core pluguin-->
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -90,6 +90,8 @@
 
     //jqueryでメッセージを追加
     function addMessage(msg) {
+        //デバッグ用の窓
+        $('#debug_window').prepend('<li>'+msg+'</li>');
         //  var comp=value
         //var msg = comp//.replace( /[!@$%<>'"&|]/g, '' ); //タグ記号とかいくつか削除
         //var t1=comp[1].replace( /[!@$%<>'"&|]/g, '' ); //タグ記号とかいくつか削除
@@ -142,7 +144,6 @@
 
 <body>
     <p id="info">
-        </>
         <div id="monitor_sp">
             <div id="sp_bg"></div>
             <canvas id="canvas_sp1"></canvas>
@@ -150,6 +151,7 @@
             <div id="text"></div>
             <div id="text2"></div>
         </div>
+        <ul id="debug_window"></ul>
 
         <div id="pre">
             <h6>CONNECTING</h6>
