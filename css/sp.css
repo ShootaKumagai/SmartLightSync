@@ -71,6 +71,7 @@ ul#debug_window {
   left: 15%;
   position: absolute;
   overflow: auto;
+  display: none;
   border-radius: 3px;
 }
 ul#debug_window li {

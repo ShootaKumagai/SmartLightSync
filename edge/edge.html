@@ -8,10 +8,7 @@
 <!--Adobe Edge Runtime-->
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <script type="text/javascript" charset="utf-8" src="edge_includes/edge.5.0.1.min.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <style>
-
         .edgeLoad-EDGE-28183762 { visibility:hidden; }
     </style>
 <script>
@@ -25,8 +22,10 @@
 }, {dom: [ ]}, {dom: [ ]});
 </script>
 <!--Adobe Edge Runtime End-->
-
+<script src="/socket.io/socket.io.js"></script>
+     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script type="text/javascript">
+preRGB="";
     var s = io.connect(); //リモート
     //var s = io.connect('http://localhost:3000'); //ローカル
 
@@ -39,7 +38,6 @@
     //ここから変数
 
 
-    //var msg=new Array[3];
 
     //操作画面から送信
     function sendMessage(c_1, c_2, c_3, c_4) {
@@ -98,7 +96,7 @@
                 tmp_RGB = cssColor.replace('rgb', "").replace('(', "").replace(')', "").replace(/ /g, "").split(',');
                 return tmp_RGB;
             }
-preRGB="";
+
 
 //最終的なプッシュ
         function confirmRGB(setRGB) {

@@ -32,6 +32,45 @@
         //Edge binding end
 
     })("stage");
-    //Edge symbol end:'stage'
+   //Edge symbol end:'stage'
+
+   //=========================================================
+   
+   //Edge symbol: 'phone'
+   (function(symbolName) {   
+   
+   })("phone");
+   //Edge symbol end:'phone'
+
+   //=========================================================
+   
+   //Edge symbol: 'triangle'
+   (function(symbolName) {   
+   
+      Symbol.bindTimelineAction(compId, symbolName, "Default Timeline", "complete", function(sym, e) {
+         // タイムラインの最後で実行されるコードをここに挿入
+         sym.play();
+
+      });
+      //Edge binding end
+
+   })("triangle");
+   //Edge symbol end:'triangle'
+
+   //=========================================================
+   
+   //Edge symbol: 'TriMotion'
+   (function(symbolName) {   
+   
+   })("TriMotion");
+   //Edge symbol end:'TriMotion'
+
+   //=========================================================
+   
+   //Edge symbol: 'TriMotion1Row'
+   (function(symbolName) {   
+   
+   })("TriMotion1Row");
+   //Edge symbol end:'TriMotion1Row'
 
 })(window.jQuery || AdobeEdge.$, AdobeEdge, "EDGE-28183762");
