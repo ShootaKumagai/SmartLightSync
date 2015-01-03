@@ -11,7 +11,7 @@
     <script src="/socket.io/socket.io.js"></script>
     <!--core pluguin-->
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/three.js/r69/three.min.js"></script>
+    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/three.js/r69/three.min.js"></script>-->
     <script src="./js_core_plugin/gShake.js"></script>
     <!--core pluguin-->
 
@@ -29,6 +29,12 @@
 
     clientText = "";
     clientRGB = [0, 0, 0, 0];
+    tmp_nowCh = 1; //
+        //グローバル変数
+        bal = 0; //バランスA&B
+        //dim=255;マスターディマー(廃止)
+        masterRGB = [0, 0, 0, 0]; //マスター[1ch,2c,...]=[R,G,B,Dimmer]
+
     //var msg=new Array[3];
 
     //クライアントからイベント送信（イベント名は自由に設定できます）
@@ -64,9 +70,10 @@
 
     function sendCount() {
         var msg = new Array(3);
-        var txt = $("#text").val(); //取得
-        msg[1] = txt;
+        //var txt = $("#text").val(); //取得
+        //msg[1] = txt;
         msg[2] = 1;
+        msg[0] = clientRGB;
         s.emit("C_to_S_message", {
             value: msg
         }); //サーバへ送信
@@ -99,8 +106,8 @@
         //$("#msg_list").prepend("<p class='msg'>text:" + t1+ "</p>");
         //console.log(msg[1]);
         clientRGB = msg[0]
-        clientText = msg[1]
-        $("#text").empty().append(msg[1]);
+        //clientText = msg[1]
+        //$("#text").empty().append(msg[1]);
         dim = msg[0][3] / 255;
         //console.log(dim);
         $("#msg_list").prepend("<p class='msg'>msg:" + msg + "</p>");
@@ -113,7 +120,7 @@
 
 
         var t_count_up = String(count_up);
-        //console.log(t_count_up);
+        console.log(t_count_up);
         $("#text2").empty().append(t_count_up);
   
 
@@ -156,8 +163,8 @@
         <div id="pre">
             <h6>CONNECTING</h6>
         </div>
-        <script type="text/javascript" src="http://jsdo.it/lib/tmlib.js-0.1.4/js"></script>
-        <script src="./js_core/common_func.js"></script>
+        <!--<script type="text/javascript" src="http://jsdo.it/lib/tmlib.js-0.1.4/js"></script>
+        <script src="./js_core/common_func.js"></script>-->
 </body>
 
 </html>

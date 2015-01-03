@@ -25,6 +25,12 @@ body {
   height: 100%;
   position: relative;
 }
+#canvas_sp1 {
+  background-image: url(../img/logo_only.svg);
+  background-repeat: no-repeat;
+  background-size: 35%;
+  background-position: center;
+}
 #monitor_sp canvas {
   height: 100%;
   width: 100%;
@@ -51,6 +57,7 @@ body {
   color: #fff;
 }
 #text2 {
+  display: none;
   position: absolute;
   top: 20%;
   left: 0px;
