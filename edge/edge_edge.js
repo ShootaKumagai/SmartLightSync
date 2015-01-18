@@ -23,7 +23,7 @@
                 minimumCompatibleVersion: "5.0.0",
                 build: "5.0.1.386",
                 scaleToFit: "both",
-                centerStage: "none",
+                centerStage: "both",
                 resizeInstances: false,
                 content: {
                     dom: [
@@ -31,7 +31,7 @@
                             id: 'Rectangle2',
                             type: 'rect',
                             rect: ['-6px', '-19px', '819px', '479px', 'auto', 'auto'],
-                            fill: ["rgba(241,239,239,1)"],
+                            fill: ["rgba(0,0,0,1.00)"],
                             stroke: [0,"rgb(0, 0, 0)","none"]
                         },
                         {
@@ -42,7 +42,7 @@
                         },
                         {
                             id: 'monitor',
-                            display: 'block',
+                            display: 'none',
                             type: 'rect',
                             rect: ['111px', '10px', '800px', '450px', 'auto', 'auto'],
                             opacity: '1',
@@ -78,10 +78,19 @@
                             font: ['\'Lucida Console\', Monaco, monospace', [43, "px"], "rgba(255,255,255,1)", "700", "none solid rgb(255, 255, 255)", "normal", "break-word", "nowrap"]
                         },
                         {
+                            id: 'RoundRect',
+                            display: 'block',
+                            type: 'rect',
+                            rect: ['327px', '273px', '149px', '45px', 'auto', 'auto'],
+                            borderRadius: ["10px", "10px", "10px", "10px"],
+                            fill: ["rgba(0,158,188,1.00)"],
+                            stroke: [0,"rgb(0, 0, 0)","none"]
+                        },
+                        {
                             id: 'btnPlay',
                             display: 'block',
                             type: 'text',
-                            rect: ['68px', '189px', '175px', '52px', 'auto', 'auto'],
+                            rect: ['313px', '278px', '175px', '34px', 'auto', 'auto'],
                             text: "PLAY",
                             align: "center",
                             font: ['\'ヒラギノ角ゴ Pro W3\', \'Hiragino Kaku Gothic Pro\', \'メイリオ\', Meiryo, \'ＭＳＰゴシック\', MS PGothic, sans-serif', [24, ""], "rgba(255,255,255,1.00)", "700", "none", "", "break-word", "normal"]
@@ -131,6 +140,7 @@
                         {
                             id: 'phone',
                             symbolName: 'phone',
+                            display: 'none',
                             type: 'rect',
                             rect: ['899px', '55px', '176', '341', 'auto', 'auto'],
                             transform: [[],['90'],[],['4.7','4.7']]
@@ -142,7 +152,7 @@
                             rect: ['315px', '-108px', 'auto', 'auto', 'auto', 'auto'],
                             text: "Can control colors of <br>smart phone's monitor <br>in real time!",
                             align: "left",
-                            font: ['Lucida Console, Monaco, monospace', [29, "px"], "rgba(0,168,156,0.99)", "700", "none solid rgb(255, 255, 255)", "normal", "break-word", "nowrap"],
+                            font: ['Lucida Console, Monaco, monospace', [29, "px"], "rgba(0,158,188,1.00)", "700", "none solid rgb(255, 255, 255)", "normal", "break-word", "nowrap"],
                             textStyle: ["215px", "529px", "38px", ""]
                         },
                         {
@@ -174,7 +184,7 @@
                         },
                         {
                             id: 'Gage',
-                            display: 'block',
+                            display: 'none',
                             type: 'rect',
                             rect: ['241px', '110px', '382px', '43px', 'auto', 'auto'],
                             opacity: '1',
@@ -183,6 +193,7 @@
                             c: [
                             {
                                 id: 'GageInner',
+                                display: 'none',
                                 type: 'rect',
                                 rect: ['0px', '0px', '382px', '43px', 'auto', 'auto'],
                                 opacity: '1',
@@ -210,7 +221,14 @@
                             id: 'Failed',
                             symbolName: 'Failed',
                             type: 'rect',
-                            rect: ['356', '181', 'undefined', 'undefined', 'auto', 'auto']
+                            rect: ['356px', '181', 'undefined', 'undefined', 'auto', 'auto']
+                        },
+                        {
+                            id: 'logo',
+                            display: 'block',
+                            type: 'image',
+                            rect: ['172px', '176px', '462px', '62px', 'auto', 'auto'],
+                            fill: ["rgba(0,0,0,0)",im+"logo.png",'0px','0px']
                         }
                     ],
                     style: {
@@ -218,7 +236,7 @@
                             isStage: true,
                             rect: ['null', 'null', '800px', '450px', 'auto', 'auto'],
                             overflow: 'hidden',
-                            fill: ["rgba(255,255,255,1)"]
+                            fill: ["rgba(0,0,0,1.00)"]
                         }
                     }
                 },
@@ -310,14 +328,14 @@
                             '252px'
                         ],
                         [
-                            "eid102",
-                            "scaleY",
-                            27530,
-                            1000,
+                            "eid467",
+                            "top",
+                            0,
+                            0,
                             "linear",
-                            "${phone}",
-                            '1',
-                            '4.7'
+                            "${TriMotion}",
+                            '-24px',
+                            '-24px'
                         ],
                         [
                             "eid64",
@@ -328,6 +346,16 @@
                             "${logo_only}",
                             '264px',
                             '-536px'
+                        ],
+                        [
+                            "eid713",
+                            "display",
+                            1,
+                            0,
+                            "linear",
+                            "${phone}",
+                            'none',
+                            'block'
                         ],
                         [
                             "eid531",
@@ -390,6 +418,16 @@
                             'rgba(68,0,252,0.9922)'
                         ],
                         [
+                            "eid730",
+                            "display",
+                            1,
+                            0,
+                            "linear",
+                            "${RoundRect}",
+                            'block',
+                            'none'
+                        ],
+                        [
                             "eid47",
                             "scaleX",
                             7186,
@@ -428,6 +466,16 @@
                             "${btnPlay}",
                             'rgba(255,255,255,1.00)',
                             'rgba(255,255,255,1.00)'
+                        ],
+                        [
+                            "eid729",
+                            "display",
+                            1,
+                            0,
+                            "linear",
+                            "${logo}",
+                            'block',
+                            'none'
                         ],
                         [
                             "eid32",
@@ -640,6 +688,16 @@
                             'none'
                         ],
                         [
+                            "eid709",
+                            "display",
+                            0,
+                            0,
+                            "linear",
+                            "${monitor}",
+                            'none',
+                            'block'
+                        ],
+                        [
                             "eid46",
                             "display",
                             7186,
@@ -780,24 +838,64 @@
                             '108px'
                         ],
                         [
-                            "eid547",
-                            "font-size",
-                            13916,
-                            0,
+                            "eid66",
+                            "left",
+                            11000,
+                            441,
                             "linear",
-                            "${Text4}",
-                            '29px',
-                            '29px'
+                            "${logo_bg_only}",
+                            '264px',
+                            '-536px'
                         ],
                         [
-                            "eid516",
-                            "left",
-                            12750,
-                            498,
+                            "eid592",
+                            "color",
+                            14167,
+                            0,
                             "linear",
-                            "${SubPhones}",
-                            '1115px',
-                            '315px'
+                            "${Text4Copy}",
+                            'rgba(0,168,156,0.9922)',
+                            'rgba(0,168,156,0.9922)'
+                        ],
+                        [
+                            "eid607",
+                            "color",
+                            14997,
+                            0,
+                            "linear",
+                            "${Text4Copy}",
+                            'rgba(0,168,156,0.9922)',
+                            'rgba(252,112,0,0.99)'
+                        ],
+                        [
+                            "eid615",
+                            "color",
+                            21750,
+                            0,
+                            "linear",
+                            "${Text4Copy}",
+                            'rgba(252,112,0,0.99)',
+                            'rgba(252,112,0,0.99)'
+                        ],
+                        [
+                            "eid608",
+                            "color",
+                            22000,
+                            0,
+                            "linear",
+                            "${Text4Copy}",
+                            'rgba(252,112,0,0.99)',
+                            'rgba(68,0,252,1.00)'
+                        ],
+                        [
+                            "eid616",
+                            "color",
+                            22251,
+                            0,
+                            "linear",
+                            "${Text4Copy}",
+                            'rgba(68,0,252,1.00)',
+                            'rgba(68,0,252,0.99)'
                         ],
                         [
                             "eid554",
@@ -900,6 +998,16 @@
                             'none'
                         ],
                         [
+                            "eid732",
+                            "display",
+                            1,
+                            0,
+                            "linear",
+                            "${Gage}",
+                            'none',
+                            'block'
+                        ],
+                        [
                             "eid647",
                             "display",
                             26250,
@@ -910,24 +1018,24 @@
                             'none'
                         ],
                         [
-                            "eid101",
-                            "scaleX",
-                            27530,
-                            1000,
-                            "linear",
-                            "${phone}",
-                            '1',
-                            '4.7'
-                        ],
-                        [
-                            "eid50",
-                            "scaleY",
-                            7450,
+                            "eid728",
+                            "top",
+                            0,
                             0,
                             "linear",
-                            "${logo_only}",
-                            '0.5',
-                            '0.5'
+                            "${RoundRect}",
+                            '273px',
+                            '273px'
+                        ],
+                        [
+                            "eid725",
+                            "left",
+                            0,
+                            0,
+                            "linear",
+                            "${btnPlay}",
+                            '313px',
+                            '313px'
                         ],
                         [
                             "eid577",
@@ -960,24 +1068,44 @@
                             '0.5'
                         ],
                         [
-                            "eid587",
-                            "border-color",
-                            21750,
+                            "eid51",
+                            "display",
+                            7186,
                             0,
                             "linear",
-                            "${Gage}",
-                            'rgba(252, 112, 0, 0.992157)',
-                            'rgba(252, 112, 0, 0.992157)'
+                            "${Text}",
+                            'none',
+                            'block'
                         ],
                         [
-                            "eid588",
-                            "border-color",
-                            22000,
+                            "eid731",
+                            "display",
+                            1,
                             0,
                             "linear",
-                            "${Gage}",
-                            'rgba(252, 112, 0, 0.992157)',
-                            'rgba(68,0,252,1.00)'
+                            "${GageInner}",
+                            'none',
+                            'block'
+                        ],
+                        [
+                            "eid727",
+                            "left",
+                            0,
+                            0,
+                            "linear",
+                            "${RoundRect}",
+                            '327px',
+                            '327px'
+                        ],
+                        [
+                            "eid466",
+                            "left",
+                            0,
+                            0,
+                            "linear",
+                            "${TriMotion}",
+                            '-46px',
+                            '-46px'
                         ],
                         [
                             "eid543",
@@ -987,6 +1115,86 @@
                             "linear",
                             "${Text4}",
                             '215px',
+                            '0px'
+                        ],
+                        [
+                            "eid56",
+                            "left",
+                            7186,
+                            264,
+                            "linear",
+                            "${monitor}",
+                            '0px',
+                            '800px'
+                        ],
+                        [
+                            "eid67",
+                            "left",
+                            11000,
+                            441,
+                            "linear",
+                            "${monitor}",
+                            '800px',
+                            '0px'
+                        ],
+                        [
+                            "eid68",
+                            "left",
+                            12750,
+                            498,
+                            "linear",
+                            "${monitor}",
+                            '0px',
+                            '-800px'
+                        ],
+                        [
+                            "eid81",
+                            "left",
+                            13248,
+                            61,
+                            "linear",
+                            "${monitor}",
+                            '-800px',
+                            '100px'
+                        ],
+                        [
+                            "eid677",
+                            "left",
+                            27530,
+                            0,
+                            "linear",
+                            "${monitor}",
+                            '100px',
+                            '100px'
+                        ],
+                        [
+                            "eid671",
+                            "left",
+                            28530,
+                            250,
+                            "linear",
+                            "${monitor}",
+                            '100px',
+                            '0px'
+                        ],
+                        [
+                            "eid667",
+                            "left",
+                            28780,
+                            0,
+                            "linear",
+                            "${monitor}",
+                            '0px',
+                            '0px'
+                        ],
+                        [
+                            "eid680",
+                            "left",
+                            59250,
+                            0,
+                            "linear",
+                            "${monitor}",
+                            '111px',
                             '0px'
                         ],
                         [
@@ -1038,116 +1246,6 @@
                             "${monitor}",
                             '1',
                             '0'
-                        ],
-                        [
-                            "eid706",
-                            "color",
-                            42333,
-                            0,
-                            "linear",
-                            "${Text}",
-                            'rgba(0,158,188,1.00)',
-                            'rgba(0,158,188,1.00)'
-                        ],
-                        [
-                            "eid467",
-                            "top",
-                            0,
-                            0,
-                            "linear",
-                            "${TriMotion}",
-                            '-24px',
-                            '-24px'
-                        ],
-                        [
-                            "eid109",
-                            "display",
-                            28530,
-                            0,
-                            "linear",
-                            "${Text2}",
-                            'none',
-                            'block'
-                        ],
-                        [
-                            "eid110",
-                            "display",
-                            28780,
-                            0,
-                            "linear",
-                            "${Text2}",
-                            'block',
-                            'none'
-                        ],
-                        [
-                            "eid111",
-                            "display",
-                            29030,
-                            0,
-                            "linear",
-                            "${Text2}",
-                            'none',
-                            'block'
-                        ],
-                        [
-                            "eid648",
-                            "display",
-                            59081,
-                            0,
-                            "linear",
-                            "${Text2}",
-                            'block',
-                            'none'
-                        ],
-                        [
-                            "eid36",
-                            "display",
-                            6569,
-                            0,
-                            "linear",
-                            "${logo_only}",
-                            'none',
-                            'block'
-                        ],
-                        [
-                            "eid37",
-                            "display",
-                            6750,
-                            0,
-                            "linear",
-                            "${logo_only}",
-                            'block',
-                            'none'
-                        ],
-                        [
-                            "eid38",
-                            "display",
-                            6857,
-                            0,
-                            "linear",
-                            "${logo_only}",
-                            'none',
-                            'block'
-                        ],
-                        [
-                            "eid39",
-                            "display",
-                            7000,
-                            0,
-                            "linear",
-                            "${logo_only}",
-                            'block',
-                            'none'
-                        ],
-                        [
-                            "eid34",
-                            "display",
-                            7186,
-                            0,
-                            "linear",
-                            "${logo_only}",
-                            'none',
-                            'block'
                         ],
                         [
                             "eid40",
@@ -1210,254 +1308,84 @@
                             '1'
                         ],
                         [
-                            "eid626",
-                            "top",
-                            23250,
+                            "eid587",
+                            "border-color",
+                            21750,
                             0,
                             "linear",
-                            "${Text5}",
-                            '69px',
-                            '69px'
+                            "${Gage}",
+                            'rgba(252, 112, 0, 0.992157)',
+                            'rgba(252, 112, 0, 0.992157)'
                         ],
                         [
-                            "eid29",
-                            "top",
-                            0,
-                            0,
-                            "linear",
-                            "${monitor}",
-                            '0px',
-                            '0px'
-                        ],
-                        [
-                            "eid82",
-                            "top",
-                            13248,
-                            61,
-                            "linear",
-                            "${monitor}",
-                            '0px',
-                            '63px'
-                        ],
-                        [
-                            "eid672",
-                            "top",
-                            13309,
-                            15221,
-                            "linear",
-                            "${monitor}",
-                            '63px',
-                            '88px'
-                        ],
-                        [
-                            "eid673",
-                            "top",
-                            28530,
-                            250,
-                            "linear",
-                            "${monitor}",
-                            '88px',
-                            '0px'
-                        ],
-                        [
-                            "eid661",
-                            "top",
-                            28780,
+                            "eid588",
+                            "border-color",
+                            22000,
                             0,
                             "linear",
-                            "${monitor}",
-                            '0px',
-                            '0px'
+                            "${Gage}",
+                            'rgba(252, 112, 0, 0.992157)',
+                            'rgba(68,0,252,1.00)'
                         ],
                         [
-                            "eid684",
-                            "top",
-                            59250,
+                            "eid50",
+                            "scaleY",
+                            7450,
                             0,
                             "linear",
-                            "${monitor}",
-                            '10px',
-                            '0px'
+                            "${logo_only}",
+                            '0.5',
+                            '0.5'
                         ],
                         [
-                            "eid107",
-                            "rotateZ",
-                            27530,
-                            1000,
-                            "linear",
-                            "${Text2}",
-                            '-90deg',
-                            '0deg'
-                        ],
-                        [
-                            "eid72",
+                            "eid516",
                             "left",
                             12750,
                             498,
                             "linear",
-                            "${phone}",
-                            '899px',
-                            '100px'
+                            "${SubPhones}",
+                            '1115px',
+                            '315px'
                         ],
                         [
-                            "eid88",
-                            "left",
-                            27530,
+                            "eid707",
+                            "color",
+                            13834,
                             0,
                             "linear",
-                            "${phone}",
-                            '100px',
-                            '100px'
+                            "${Text4}",
+                            'rgba(0,158,188,1.00)',
+                            'rgba(0,158,188,1.00)'
                         ],
                         [
-                            "eid99",
-                            "rotateZ",
-                            27530,
-                            1000,
+                            "eid708",
+                            "color",
+                            14664,
+                            0,
                             "linear",
-                            "${phone}",
-                            '0deg',
-                            '90deg'
+                            "${Text4}",
+                            'rgba(0,158,188,1.00)',
+                            'rgba(252,112,0,0.99)'
                         ],
                         [
-                            "eid122",
-                            "left",
-                            12750,
-                            498,
+                            "eid127",
+                            "color",
+                            22000,
+                            0,
                             "linear",
-                            "${logo_only2}",
-                            '940px',
-                            '140px'
+                            "${Text4}",
+                            'rgba(252,112,0,0.99)',
+                            'rgba(68,0,252,0.99)'
                         ],
                         [
-                            "eid464",
-                            "scaleX",
+                            "eid465",
+                            "scaleY",
                             0,
                             0,
                             "linear",
                             "${TriMotion}",
                             '0.88704',
                             '0.88704'
-                        ],
-                        [
-                            "eid66",
-                            "left",
-                            11000,
-                            441,
-                            "linear",
-                            "${logo_bg_only}",
-                            '264px',
-                            '-536px'
-                        ],
-                        [
-                            "eid51",
-                            "display",
-                            7186,
-                            0,
-                            "linear",
-                            "${Text}",
-                            'none',
-                            'block'
-                        ],
-                        [
-                            "eid605",
-                            "word-spacing",
-                            14167,
-                            833,
-                            "linear",
-                            "${Text4Copy}",
-                            '529px',
-                            '0px'
-                        ],
-                        [
-                            "eid65",
-                            "left",
-                            11000,
-                            441,
-                            "linear",
-                            "${Text}",
-                            '266px',
-                            '-534px'
-                        ],
-                        [
-                            "eid694",
-                            "background-color",
-                            58626,
-                            0,
-                            "linear",
-                            "${Rectangle2}",
-                            'rgba(241,239,239,1)',
-                            'rgba(241,239,239,1)'
-                        ],
-                        [
-                            "eid695",
-                            "background-color",
-                            59081,
-                            0,
-                            "linear",
-                            "${Rectangle2}",
-                            'rgba(241,239,239,1)',
-                            'rgba(0,0,0,1.00)'
-                        ],
-                        [
-                            "eid112",
-                            "display",
-                            11441,
-                            0,
-                            "linear",
-                            "${Text3}",
-                            'none',
-                            'block'
-                        ],
-                        [
-                            "eid243",
-                            "display",
-                            11608,
-                            0,
-                            "linear",
-                            "${Text3}",
-                            'block',
-                            'none'
-                        ],
-                        [
-                            "eid244",
-                            "display",
-                            11750,
-                            0,
-                            "linear",
-                            "${Text3}",
-                            'none',
-                            'block'
-                        ],
-                        [
-                            "eid245",
-                            "display",
-                            11916,
-                            0,
-                            "linear",
-                            "${Text3}",
-                            'block',
-                            'none'
-                        ],
-                        [
-                            "eid246",
-                            "display",
-                            12079,
-                            0,
-                            "linear",
-                            "${Text3}",
-                            'none',
-                            'block'
-                        ],
-                        [
-                            "eid548",
-                            "line-height",
-                            13916,
-                            0,
-                            "linear",
-                            "${Text4}",
-                            '38px',
-                            '38px'
                         ],
                         [
                             "eid2",
@@ -1990,14 +1918,274 @@
                             'rgba(0,0,0,1.00)'
                         ],
                         [
-                            "eid465",
+                            "eid626",
+                            "top",
+                            23250,
+                            0,
+                            "linear",
+                            "${Text5}",
+                            '69px',
+                            '69px'
+                        ],
+                        [
+                            "eid29",
+                            "top",
+                            0,
+                            0,
+                            "linear",
+                            "${monitor}",
+                            '0px',
+                            '0px'
+                        ],
+                        [
+                            "eid82",
+                            "top",
+                            13248,
+                            61,
+                            "linear",
+                            "${monitor}",
+                            '0px',
+                            '63px'
+                        ],
+                        [
+                            "eid672",
+                            "top",
+                            13309,
+                            15221,
+                            "linear",
+                            "${monitor}",
+                            '63px',
+                            '88px'
+                        ],
+                        [
+                            "eid673",
+                            "top",
+                            28530,
+                            250,
+                            "linear",
+                            "${monitor}",
+                            '88px',
+                            '0px'
+                        ],
+                        [
+                            "eid661",
+                            "top",
+                            28780,
+                            0,
+                            "linear",
+                            "${monitor}",
+                            '0px',
+                            '0px'
+                        ],
+                        [
+                            "eid684",
+                            "top",
+                            59250,
+                            0,
+                            "linear",
+                            "${monitor}",
+                            '10px',
+                            '0px'
+                        ],
+                        [
+                            "eid107",
+                            "rotateZ",
+                            27530,
+                            1000,
+                            "linear",
+                            "${Text2}",
+                            '-90deg',
+                            '0deg'
+                        ],
+                        [
+                            "eid102",
                             "scaleY",
+                            27530,
+                            1000,
+                            "linear",
+                            "${phone}",
+                            '1',
+                            '4.7'
+                        ],
+                        [
+                            "eid99",
+                            "rotateZ",
+                            27530,
+                            1000,
+                            "linear",
+                            "${phone}",
+                            '0deg',
+                            '90deg'
+                        ],
+                        [
+                            "eid122",
+                            "left",
+                            12750,
+                            498,
+                            "linear",
+                            "${logo_only2}",
+                            '940px',
+                            '140px'
+                        ],
+                        [
+                            "eid464",
+                            "scaleX",
                             0,
                             0,
                             "linear",
                             "${TriMotion}",
                             '0.88704',
                             '0.88704'
+                        ],
+                        [
+                            "eid112",
+                            "display",
+                            11441,
+                            0,
+                            "linear",
+                            "${Text3}",
+                            'none',
+                            'block'
+                        ],
+                        [
+                            "eid243",
+                            "display",
+                            11608,
+                            0,
+                            "linear",
+                            "${Text3}",
+                            'block',
+                            'none'
+                        ],
+                        [
+                            "eid244",
+                            "display",
+                            11750,
+                            0,
+                            "linear",
+                            "${Text3}",
+                            'none',
+                            'block'
+                        ],
+                        [
+                            "eid245",
+                            "display",
+                            11916,
+                            0,
+                            "linear",
+                            "${Text3}",
+                            'block',
+                            'none'
+                        ],
+                        [
+                            "eid246",
+                            "display",
+                            12079,
+                            0,
+                            "linear",
+                            "${Text3}",
+                            'none',
+                            'block'
+                        ],
+                        [
+                            "eid706",
+                            "color",
+                            42333,
+                            0,
+                            "linear",
+                            "${Text}",
+                            'rgba(0,158,188,1.00)',
+                            'rgba(0,158,188,1.00)'
+                        ],
+                        [
+                            "eid712",
+                            "background-color",
+                            0,
+                            1,
+                            "linear",
+                            "${Rectangle2}",
+                            'rgba(0,0,0,1.00)',
+                            'rgba(241,239,239,1)'
+                        ],
+                        [
+                            "eid694",
+                            "background-color",
+                            58626,
+                            0,
+                            "linear",
+                            "${Rectangle2}",
+                            'rgba(241,239,239,1)',
+                            'rgba(241,239,239,1)'
+                        ],
+                        [
+                            "eid695",
+                            "background-color",
+                            59081,
+                            0,
+                            "linear",
+                            "${Rectangle2}",
+                            'rgba(241,239,239,1)',
+                            'rgba(0,0,0,1.00)'
+                        ],
+                        [
+                            "eid547",
+                            "font-size",
+                            13916,
+                            0,
+                            "linear",
+                            "${Text4}",
+                            '29px',
+                            '29px'
+                        ],
+                        [
+                            "eid605",
+                            "word-spacing",
+                            14167,
+                            833,
+                            "linear",
+                            "${Text4Copy}",
+                            '529px',
+                            '0px'
+                        ],
+                        [
+                            "eid65",
+                            "left",
+                            11000,
+                            441,
+                            "linear",
+                            "${Text}",
+                            '266px',
+                            '-534px'
+                        ],
+                        [
+                            "eid548",
+                            "line-height",
+                            13916,
+                            0,
+                            "linear",
+                            "${Text4}",
+                            '38px',
+                            '38px'
+                        ],
+                        [
+                            "eid720",
+                            "height",
+                            0,
+                            0,
+                            "linear",
+                            "${btnPlay}",
+                            '34px',
+                            '34px'
+                        ],
+                        [
+                            "eid101",
+                            "scaleX",
+                            27530,
+                            1000,
+                            "linear",
+                            "${phone}",
+                            '1',
+                            '4.7'
                         ],
                         [
                             "eid35",
@@ -2010,34 +2198,14 @@
                             'block'
                         ],
                         [
-                            "eid118",
-                            "color",
-                            13916,
+                            "eid726",
+                            "top",
+                            0,
                             0,
                             "linear",
-                            "${Text4}",
-                            'rgba(0,168,156,0.9922)',
-                            'rgba(0,168,156,0.9922)'
-                        ],
-                        [
-                            "eid126",
-                            "color",
-                            14746,
-                            0,
-                            "linear",
-                            "${Text4}",
-                            'rgba(0,168,156,0.9922)',
-                            'rgba(252,112,0,0.99)'
-                        ],
-                        [
-                            "eid127",
-                            "color",
-                            22000,
-                            0,
-                            "linear",
-                            "${Text4}",
-                            'rgba(252,112,0,0.99)',
-                            'rgba(68,0,252,0.99)'
+                            "${btnPlay}",
+                            '278px',
+                            '278px'
                         ],
                         [
                             "eid627",
@@ -2060,54 +2228,24 @@
                             'none'
                         ],
                         [
-                            "eid592",
-                            "color",
-                            14167,
-                            0,
+                            "eid72",
+                            "left",
+                            12750,
+                            498,
                             "linear",
-                            "${Text4Copy}",
-                            'rgba(0,168,156,0.9922)',
-                            'rgba(0,168,156,0.9922)'
+                            "${phone}",
+                            '899px',
+                            '100px'
                         ],
                         [
-                            "eid607",
-                            "color",
-                            14997,
+                            "eid88",
+                            "left",
+                            27530,
                             0,
                             "linear",
-                            "${Text4Copy}",
-                            'rgba(0,168,156,0.9922)',
-                            'rgba(252,112,0,0.99)'
-                        ],
-                        [
-                            "eid615",
-                            "color",
-                            21750,
-                            0,
-                            "linear",
-                            "${Text4Copy}",
-                            'rgba(252,112,0,0.99)',
-                            'rgba(252,112,0,0.99)'
-                        ],
-                        [
-                            "eid608",
-                            "color",
-                            22000,
-                            0,
-                            "linear",
-                            "${Text4Copy}",
-                            'rgba(252,112,0,0.99)',
-                            'rgba(68,0,252,1.00)'
-                        ],
-                        [
-                            "eid616",
-                            "color",
-                            22251,
-                            0,
-                            "linear",
-                            "${Text4Copy}",
-                            'rgba(68,0,252,1.00)',
-                            'rgba(68,0,252,0.99)'
+                            "${phone}",
+                            '100px',
+                            '100px'
                         ],
                         [
                             "eid644",
@@ -2130,94 +2268,94 @@
                             '0.19'
                         ],
                         [
-                            "eid56",
-                            "left",
-                            7186,
-                            264,
-                            "linear",
-                            "${monitor}",
-                            '0px',
-                            '800px'
-                        ],
-                        [
-                            "eid67",
-                            "left",
-                            11000,
-                            441,
-                            "linear",
-                            "${monitor}",
-                            '800px',
-                            '0px'
-                        ],
-                        [
-                            "eid68",
-                            "left",
-                            12750,
-                            498,
-                            "linear",
-                            "${monitor}",
-                            '0px',
-                            '-800px'
-                        ],
-                        [
-                            "eid81",
-                            "left",
-                            13248,
-                            61,
-                            "linear",
-                            "${monitor}",
-                            '-800px',
-                            '100px'
-                        ],
-                        [
-                            "eid677",
-                            "left",
-                            27530,
+                            "eid36",
+                            "display",
+                            6569,
                             0,
                             "linear",
-                            "${monitor}",
-                            '100px',
-                            '100px'
+                            "${logo_only}",
+                            'none',
+                            'block'
                         ],
                         [
-                            "eid671",
-                            "left",
-                            28530,
-                            250,
+                            "eid37",
+                            "display",
+                            6750,
+                            0,
                             "linear",
-                            "${monitor}",
-                            '100px',
-                            '0px'
+                            "${logo_only}",
+                            'block',
+                            'none'
                         ],
                         [
-                            "eid667",
-                            "left",
+                            "eid38",
+                            "display",
+                            6857,
+                            0,
+                            "linear",
+                            "${logo_only}",
+                            'none',
+                            'block'
+                        ],
+                        [
+                            "eid39",
+                            "display",
+                            7000,
+                            0,
+                            "linear",
+                            "${logo_only}",
+                            'block',
+                            'none'
+                        ],
+                        [
+                            "eid34",
+                            "display",
+                            7186,
+                            0,
+                            "linear",
+                            "${logo_only}",
+                            'none',
+                            'block'
+                        ],
+                        [
+                            "eid109",
+                            "display",
+                            28530,
+                            0,
+                            "linear",
+                            "${Text2}",
+                            'none',
+                            'block'
+                        ],
+                        [
+                            "eid110",
+                            "display",
                             28780,
                             0,
                             "linear",
-                            "${monitor}",
-                            '0px',
-                            '0px'
+                            "${Text2}",
+                            'block',
+                            'none'
                         ],
                         [
-                            "eid680",
-                            "left",
-                            59250,
+                            "eid111",
+                            "display",
+                            29030,
                             0,
                             "linear",
-                            "${monitor}",
-                            '111px',
-                            '0px'
+                            "${Text2}",
+                            'none',
+                            'block'
                         ],
                         [
-                            "eid466",
-                            "left",
-                            0,
+                            "eid648",
+                            "display",
+                            59081,
                             0,
                             "linear",
-                            "${TriMotion}",
-                            '-46px',
-                            '-46px'
+                            "${Text2}",
+                            'block',
+                            'none'
                         ],
                         [
                             "eid580",
@@ -2253,17 +2391,17 @@
                             fill: ['rgba(0,169,157,0.00)']
                         },
                         {
-                            type: 'rect',
+                            rect: ['10px', '300px', '161px', '32px', 'auto', 'auto'],
                             id: 'Rectangle2',
                             stroke: [0, 'rgb(0, 0, 0)', 'solid'],
-                            rect: ['10px', '300px', '161px', '32px', 'auto', 'auto'],
+                            type: 'rect',
                             fill: ['rgba(0,0,0,1.00)']
                         },
                         {
-                            type: 'rect',
+                            rect: ['10px', '8px', '161px', '32px', 'auto', 'auto'],
                             id: 'Rectangle2Copy',
                             stroke: [0, 'rgb(0, 0, 0)', 'solid'],
-                            rect: ['10px', '8px', '161px', '32px', 'auto', 'auto'],
+                            type: 'rect',
                             fill: ['rgba(0,0,0,1.00)']
                         }
                     ],
@@ -2291,9 +2429,9 @@
                 content: {
                     dom: [
                         {
-                            rect: ['0px', '0px', '169px', '169px', 'auto', 'auto'],
-                            id: 'triangle',
                             type: 'image',
+                            id: 'triangle',
+                            rect: ['0px', '0px', '169px', '169px', 'auto', 'auto'],
                             fill: ['rgba(0,0,0,0)', 'images/triangle.svg', '0px', '0px']
                         }
                     ],
@@ -2340,42 +2478,42 @@
                 content: {
                     dom: [
                         {
-                            type: 'rect',
                             rect: ['2px', '1px', '800px', '450px', 'auto', 'auto'],
+                            type: 'rect',
                             id: 'Rectangle',
                             stroke: [0, 'rgba(0,0,0,1)', 'none'],
                             display: 'none',
                             fill: ['rgba(192,192,192,1)']
                         },
                         {
-                            rect: ['-132', '0px', '1194', '169', 'auto', 'auto'],
+                            type: 'rect',
                             id: 'TriMotion1Row',
                             symbolName: 'TriMotion1Row',
-                            type: 'rect'
+                            rect: ['-132', '0px', '1194', '169', 'auto', 'auto']
                         },
                         {
-                            rect: ['-132', '253px', '1194', '169', 'auto', 'auto'],
+                            type: 'rect',
                             id: 'TriMotion1RowCopy2',
                             symbolName: 'TriMotion1Row',
-                            type: 'rect'
+                            rect: ['-132', '253px', '1194', '169', 'auto', 'auto']
                         },
                         {
-                            rect: ['-204px', '379px', '1194', '169', 'auto', 'auto'],
+                            type: 'rect',
                             id: 'TriMotion1RowCopy3',
                             symbolName: 'TriMotion1Row',
-                            type: 'rect'
+                            rect: ['-204px', '379px', '1194', '169', 'auto', 'auto']
                         },
                         {
-                            rect: ['-57px', '126px', '1194', '169', 'auto', 'auto'],
+                            type: 'rect',
                             id: 'TriMotion1RowCopy',
                             symbolName: 'TriMotion1Row',
-                            type: 'rect'
+                            rect: ['-57px', '126px', '1194', '169', 'auto', 'auto']
                         },
                         {
-                            rect: ['-57px', '-126px', '1194', '169', 'auto', 'auto'],
+                            type: 'rect',
                             id: 'TriMotion1RowCopy4',
                             symbolName: 'TriMotion1Row',
-                            type: 'rect'
+                            rect: ['-57px', '-126px', '1194', '169', 'auto', 'auto']
                         }
                     ],
                     style: {
@@ -2429,12 +2567,22 @@
                             '253px'
                         ],
                         [
-                            "eid475",
+                            "eid476",
                             "left",
                             0,
                             0,
                             "linear",
-                            "${TriMotion1RowCopy}",
+                            "${TriMotion1RowCopy3}",
+                            '-204px',
+                            '-204px'
+                        ],
+                        [
+                            "eid478",
+                            "left",
+                            0,
+                            0,
+                            "linear",
+                            "${TriMotion1RowCopy4}",
                             '-57px',
                             '-57px'
                         ],
@@ -2449,34 +2597,24 @@
                             '126px'
                         ],
                         [
-                            "eid478",
+                            "eid475",
                             "left",
                             0,
                             0,
                             "linear",
-                            "${TriMotion1RowCopy4}",
+                            "${TriMotion1RowCopy}",
                             '-57px',
                             '-57px'
-                        ],
-                        [
-                            "eid476",
-                            "left",
-                            0,
-                            0,
-                            "linear",
-                            "${TriMotion1RowCopy3}",
-                            '-204px',
-                            '-204px'
                         ],
                             [ "eid482", "trigger", 0, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['stop', '${TriMotion1Row}', [] ] ],
                             [ "eid485", "trigger", 0, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['stop', '${TriMotion1RowCopy3}', [] ] ],
                             [ "eid484", "trigger", 0, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['stop', '${TriMotion1RowCopy}', [] ] ],
                             [ "eid486", "trigger", 0, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['stop', '${TriMotion1RowCopy2}', [] ] ],
                             [ "eid483", "trigger", 0, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['stop', '${TriMotion1RowCopy4}', [] ] ],
+                            [ "eid472", "trigger", 1, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${TriMotion1RowCopy2}', [] ] ],
+                            [ "eid481", "trigger", 1, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${TriMotion1RowCopy4}', [] ] ],
                             [ "eid473", "trigger", 1, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${TriMotion1RowCopy3}', [] ] ],
                             [ "eid474", "trigger", 1, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${TriMotion1Row}', [] ] ],
-                            [ "eid481", "trigger", 1, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${TriMotion1RowCopy4}', [] ] ],
-                            [ "eid472", "trigger", 1, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${TriMotion1RowCopy2}', [] ] ],
                             [ "eid471", "trigger", 1, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${TriMotion1RowCopy}', [] ] ]
                     ]
                 }
@@ -2618,18 +2756,18 @@
                             '0px'
                         ],
                             [ "eid445", "trigger", 0, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['stop', '${triangle2Copy15}', [] ] ],
-                            [ "eid443", "trigger", 0, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['stop', '${triangle2Copy16}', [] ] ],
-                            [ "eid444", "trigger", 0, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['stop', '${triangle2Copy19}', [] ] ],
+                            [ "eid442", "trigger", 0, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['stop', '${triangle2Copy18}', [] ] ],
+                            [ "eid446", "trigger", 0, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['stop', '${triangle2Copy20}', [] ] ],
                             [ "eid256", "trigger", 0, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['stop', '${triangle2}', [] ] ],
                             [ "eid441", "trigger", 0, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['stop', '${triangle2Copy21}', [] ] ],
-                            [ "eid446", "trigger", 0, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['stop', '${triangle2Copy20}', [] ] ],
-                            [ "eid442", "trigger", 0, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['stop', '${triangle2Copy18}', [] ] ],
-                            [ "eid450", "trigger", 1, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${triangle2Copy16}', [] ] ],
-                            [ "eid448", "trigger", 1, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${triangle2Copy19}', [] ] ],
-                            [ "eid451", "trigger", 1, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${triangle2Copy18}', [] ] ],
+                            [ "eid443", "trigger", 0, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['stop', '${triangle2Copy16}', [] ] ],
+                            [ "eid444", "trigger", 0, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['stop', '${triangle2Copy19}', [] ] ],
+                            [ "eid453", "trigger", 1, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${triangle2Copy21}', [] ] ],
                             [ "eid447", "trigger", 1, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${triangle2Copy20}', [] ] ],
                             [ "eid257", "trigger", 1, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${triangle2}', [] ] ],
-                            [ "eid453", "trigger", 1, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${triangle2Copy21}', [] ] ],
+                            [ "eid448", "trigger", 1, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${triangle2Copy19}', [] ] ],
+                            [ "eid451", "trigger", 1, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${triangle2Copy18}', [] ] ],
+                            [ "eid450", "trigger", 1, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${triangle2Copy16}', [] ] ],
                             [ "eid452", "trigger", 1, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${triangle2Copy15}', [] ] ],
                             [ "eid469", "trigger", 1, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${triangle2Copy17}', [] ] ]
                     ]
@@ -2645,17 +2783,17 @@
                 content: {
                     dom: [
                         {
-                            rect: ['10px', '24px', '160px', '287px', 'auto', 'auto'],
+                            type: 'rect',
                             id: 'Rectangle',
                             stroke: [0, 'rgba(0,0,0,1)', 'none'],
-                            type: 'rect',
+                            rect: ['10px', '24px', '160px', '287px', 'auto', 'auto'],
                             fill: ['rgba(255,115,0,1.00)']
                         },
                         {
-                            type: 'rect',
+                            rect: ['0px', '0px', null, null, 'auto', 'auto'],
                             id: 'phone2',
                             symbolName: 'phone',
-                            rect: ['0px', '0px', null, null, 'auto', 'auto']
+                            type: 'rect'
                         }
                     ],
                     style: {
@@ -2773,76 +2911,6 @@
                             '-76px'
                         ],
                         [
-                            "eid501",
-                            "scaleY",
-                            27902,
-                            0,
-                            "linear",
-                            "${SubPhoneCopy}",
-                            '0.55114',
-                            '0.55114'
-                        ],
-                        [
-                            "eid504",
-                            "scaleX",
-                            27902,
-                            0,
-                            "linear",
-                            "${SubPhone}",
-                            '0.55114',
-                            '0.55114'
-                        ],
-                        [
-                            "eid513",
-                            "scaleY",
-                            27902,
-                            0,
-                            "linear",
-                            "${SubPhoneCopy2}",
-                            '0.55114',
-                            '0.55114'
-                        ],
-                        [
-                            "eid500",
-                            "scaleX",
-                            27902,
-                            0,
-                            "linear",
-                            "${SubPhoneCopy}",
-                            '0.55114',
-                            '0.55114'
-                        ],
-                        [
-                            "eid511",
-                            "top",
-                            27902,
-                            0,
-                            "linear",
-                            "${SubPhoneCopy2}",
-                            '-76px',
-                            '-76px'
-                        ],
-                        [
-                            "eid563",
-                            "left",
-                            13248,
-                            502,
-                            "linear",
-                            "${SubPhoneCopy}",
-                            '-219px',
-                            '103px'
-                        ],
-                        [
-                            "eid508",
-                            "left",
-                            27902,
-                            0,
-                            "linear",
-                            "${SubPhoneCopy}",
-                            '103px',
-                            '103px'
-                        ],
-                        [
                             "eid564",
                             "left",
                             13248,
@@ -2863,8 +2931,18 @@
                             '246px'
                         ],
                         [
-                            "eid510",
-                            "scaleX",
+                            "eid505",
+                            "scaleY",
+                            27902,
+                            0,
+                            "linear",
+                            "${SubPhone}",
+                            '0.55114',
+                            '0.55114'
+                        ],
+                        [
+                            "eid513",
+                            "scaleY",
                             27902,
                             0,
                             "linear",
@@ -2873,14 +2951,14 @@
                             '0.55114'
                         ],
                         [
-                            "eid507",
-                            "top",
+                            "eid504",
+                            "scaleX",
                             27902,
                             0,
                             "linear",
                             "${SubPhone}",
-                            '-76px',
-                            '-76px'
+                            '0.55114',
+                            '0.55114'
                         ],
                         [
                             "eid562",
@@ -2903,12 +2981,72 @@
                             '-39px'
                         ],
                         [
-                            "eid505",
-                            "scaleY",
+                            "eid507",
+                            "top",
                             27902,
                             0,
                             "linear",
                             "${SubPhone}",
+                            '-76px',
+                            '-76px'
+                        ],
+                        [
+                            "eid501",
+                            "scaleY",
+                            27902,
+                            0,
+                            "linear",
+                            "${SubPhoneCopy}",
+                            '0.55114',
+                            '0.55114'
+                        ],
+                        [
+                            "eid510",
+                            "scaleX",
+                            27902,
+                            0,
+                            "linear",
+                            "${SubPhoneCopy2}",
+                            '0.55114',
+                            '0.55114'
+                        ],
+                        [
+                            "eid563",
+                            "left",
+                            13248,
+                            502,
+                            "linear",
+                            "${SubPhoneCopy}",
+                            '-219px',
+                            '103px'
+                        ],
+                        [
+                            "eid508",
+                            "left",
+                            27902,
+                            0,
+                            "linear",
+                            "${SubPhoneCopy}",
+                            '103px',
+                            '103px'
+                        ],
+                        [
+                            "eid511",
+                            "top",
+                            27902,
+                            0,
+                            "linear",
+                            "${SubPhoneCopy2}",
+                            '-76px',
+                            '-76px'
+                        ],
+                        [
+                            "eid500",
+                            "scaleX",
+                            27902,
+                            0,
+                            "linear",
+                            "${SubPhoneCopy}",
                             '0.55114',
                             '0.55114'
                         ],
@@ -2931,11 +3069,11 @@
                             type: 'text',
                             id: 'complete',
                             text: 'COMPLETE!',
-                            font: ['\'ヒラギノ角ゴ Pro W3\', \'Hiragino Kaku Gothic Pro\', メイリオ, Meiryo, ＭＳＰゴシック, \'MS PGothic\', sans-serif', [41, 'px'], 'rgba(68,0,252,1)', '700', 'none solid rgb(68, 0, 252)', 'normal', 'break-word', 'normal'],
-                            display: 'none',
-                            opacity: '1',
                             rect: ['0px', '0px', '351px', '62px', 'auto', 'auto'],
-                            align: 'left'
+                            display: 'none',
+                            align: 'left',
+                            font: ['\'ヒラギノ角ゴ Pro W3\', \'Hiragino Kaku Gothic Pro\', メイリオ, Meiryo, ＭＳＰゴシック, \'MS PGothic\', sans-serif', [41, 'px'], 'rgba(68,0,252,1)', '700', 'none solid rgb(68, 0, 252)', 'normal', 'break-word', 'normal'],
+                            opacity: '1'
                         }
                     ],
                     style: {
@@ -3026,8 +3164,8 @@
                             text: 'FAILED...',
                             font: ['\'ヒラギノ角ゴ Pro W3\', \'Hiragino Kaku Gothic Pro\', メイリオ, Meiryo, ＭＳＰゴシック, \'MS PGothic\', sans-serif', [41, 'px'], 'rgba(68,0,252,1)', '700', 'none solid rgb(68, 0, 252)', 'normal', 'break-word', 'normal'],
                             display: 'none',
-                            opacity: '1',
                             rect: ['0px', '0px', '351px', '62px', 'auto', 'auto'],
+                            opacity: '1',
                             align: 'left'
                         }
                     ],
