@@ -1,178 +1,87 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 
 <head>
+    <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="shortcut icon" href="../img/favicon.ico" />
     <link href="./css/style.css" type="text/css" rel="stylesheet" />
-    <title>無題</title>
-
-
+    <title>SMART LIGHT SYNC</title>
     <script src="/socket.io/socket.io.js"></script>
+    <!--core pluguin-->
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <!--core pluguin-->
+
     <script type="text/javascript">
-    gageTrigger = 0;
-    //必要シェイク回数
-    countLimit = 50;
-
-    //countMax=$('#Stage_GageInner').width();
-    countMax = 382;
-    countUp = 0;
-    preRGB = "";
-    clientRGB = [0, 0, 0, 0];
-    tmp_nowCh = 1; //
-    //グローバル変数
-    bal = 0; //バランスA&B
-    //dim=255;マスターディマー(廃止)
-    masterRGB = [0, 0, 0, 0]; //マスター[1ch,2c,...]=[R,G,B,Dimmer]
-
+    int link_mode=0;
+    if(link_mode!=0){
     var s = io.connect(); //リモート
-    //var s = io.connect('http://localhost:3000'); //ローカル
-
     //サーバから受け取るイベント
     s.on("connect", function() {}); // 接続時
     s.on("disconnect", function(client) {}); // 切断時
     s.on("S_to_C_message", function(data) {
         addMessage(data.value);
     });
-    //ここから変数
-
-
-
-    //操作画面から送信
-    function sendMessage(c_1, c_2, c_3, c_4) {
-        var msg = new Array(4);
-        msg[0] = c_1;
-        var txt = $("#text_input").val(); //取得
-        msg[1] = txt;
-        msg[3] = c_4;
-        //msg[2] = c_3;
-        //msg="rgb("+c_1+","+c_2+","+c_3+")";
-        //var msg= new Array(3);
-        //msg[0] = c_1;
-        //msg[1] = c_2;
-        //msg[2] = c_3;
-        //var msg = $("#message").val(); //取得
-        //$("#message").val(""); //空白にする
-        s.emit("C_to_S_message", {
-            value: msg
-        }); //サーバへ送信
+    clientRGB = [0, 0, 0, 0];
+    tmp_nowCh = 1; //
+    //グローバル変数
+    bal = 0; //バランスA&B
+    masterRGB = [0, 0, 0, 0]; //マスター[1ch,2c,...]=[R,G,B,Dimmer]
+    function sendInitial() {
+        var ini_msg = "connect";
+        sendMessage(clientRGB, clientText, 0, ini_msg);
     }
-
-
-    function sendText() {
-        var msg = new Array(3);
-        var txt = $("#text_form").val(); //取得
-        console.log(txt);
-        msg[1] = txt;
-
-        s.emit("C_to_S_message", {
-            value: msg
-        }); //サーバへ送信
+    function addMessage(msg) {
+        clientRGB = msg[0];
+        dim = msg[0][3] / 255;
+        $("#msg_list").prepend("<p class='msg'>msg:" + msg + "</p>");
+        $(".sss").css({
+            "backgroundColor": 'rgba(' + msg[0][0] + ',' + msg[0][1] + ',' + msg[0][2] + ',' + dim + ')'
+        });
+        $(".sss_t").css({
+            "color": 'rgba(' + msg[0][0] + ',' + msg[0][1] + ',' + msg[0][2] + ',' + dim + ')'
+        });
     }
-
-    function sendCount() {
-            var msg = new Array(3);
-            //var txt = $("#text").val(); //取得
-            //msg[1] = txt;
-            msg[2] = 1;
-            msg[0] = clientRGB;
-            s.emit("C_to_S_message", {
-                value: msg
-            }); //サーバへ送信
-        }
-        //操作画面から送信(対象に操作画面を含まない)
-    function sendBroadcast() {
-        var msg = $("#message").val(); //取得
-        $("#message").val(""); //空白にする
-        s.emit("C_to_S_broadcast", {
-            value: msg
-        }); // サーバへ送信
-    }
-
-    //他からイベントを受け取った時→クライアントからの接続要求に応じて現在の設定を送り返す
-    function addMessage(value, color, size, connect) {
-            var initial_flg = value[3];
-            if (initial_flg == "connect") {
-                sendMessage(masterRGB, 0, 0, 0);
-            }
-            //カウントアップ
-
-            if (countUp != countLimit && gageTrigger != 0) {
-                countUp = countUp + value[2];
-            }
-            var gageWidth = countMax * countUp / countLimit;
-            //console.log(gageWidth);
-            $('#Stage_GageInner').width(gageWidth);
-
-            //カウントアップ
-
-        }
-        //
-    masterRGB = new Array(4);
-    //文字列rgb(r,g,b)から配列[r,g,b]に
-    function cssToRgb(cssColor) {
-        var tmp_RGB = masterRGB;
-        tmp_RGB = cssColor.replace('rgb', "").replace('(', "").replace(')', "").replace(/ /g, "").split(',');
-        return tmp_RGB;
-    }
-
-
-    //最終的なプッシュ
-    function confirmRGB(setRGB) {
-        //masterRGBに値をセット
-        masterRGB = setRGB;
-        sendMessage(masterRGB, 0, 0, 0);
-        //changeBG('#ch_a', masterRGB);
-    }
-
-    function monitorGetter() {
-        var tmp_RGB = $('#Stage_monitor').css('background-color');
-        if (preRGB != tmp_RGB) {
-            preRGB = tmp_RGB;
-            var tmp_RGB = cssToRgb(tmp_RGB);
-            masterRGB = [tmp_RGB[0], tmp_RGB[1], tmp_RGB[2], 255]
-            console.log(masterRGB);
-            confirmRGB(masterRGB);
-
-        };
-    }
+};
     </script>
+    <!--SP用JS読み込み-->
+    <script src="./js_core/sp.js"></script>
 </head>
 
 <body>
     <header>
         <h1><img src="img/logo.png" height="116" width="760"></h1>
     </header>
-    <section class="eyecatch">
+    <section class="eyecatch sss">
         <article>
             <h2>スマホとLED照明で空間を彩る</h2>
             <img src="img/image00.png" height="275" width="953">
-            <h3>あなたのスマホをリンクしよう</h3>
- <img src="img/qr.jpg" height="176" width="176" id="qr">
+            <p>「SMART SYNC SYSTEM」はLED舞台照明とスマートフォンの「色」を連動してコントロールすることができるウェブアプリケーションです。</p>
+            <img src="img/qr.jpg" height="176" width="176" id="qr" class="pc">
+            <h3 class="pc">あなたのスマートフォンをリンクしよう</h3>
+           <a class="btn mobile" href="../index.html">あなたのスマートフォンをリンクしよう</a>
         </article>
     </section>
     <section>
         <article>
             <img src="img/image01.png" height="525" width="331" class="float_l">
             <div class="description float_r">
-                <h3>GUIコントローラから<br>
+                <h3 class="sss_t">GUIコントローラから<br>
 コントロール</h3>
-                <p>PCやタブレット端末から、リアルタイムで制御することができます。
+                <p>タブレット端末やPCなどから、リアルタイムで制御することができます。
                 </p>
-                <a class="btn">コントローラーへ</a>
+                <a target="_blank" class="btn sss" href="../ctrl_ui.html">GUIコントローラー</a>
             </div>
         </article>
-    </section>  
+    </section>
     <section>
         <article>
             <img src="img/image02.png" class="float_r">
             <div class="description float_l">
-                <h3>GUIコントローラから<br>
-コントロール</h3>
-                <p>テキストがここに入る
+                <h3 class="sss_t">WEBコンテンツから呼び出してコントロール</h3>
+                <p>Adobe Edge Animateなどで作成したWEBアニメーションなど、WEBコンテンツから制御の命令を呼び出すことができます。
                 </p>
-                <a class="btn">コントローラーへ</a>
+                <a target="_blank" class="btn sss" href="../edge/edge.html">デモアニメーション</a>
             </div>
         </article>
     </section>
@@ -180,33 +89,53 @@
         <article>
             <img src="img/image03.png" class="float_l">
             <div class="description float_r">
-                <h3>スマホからの<br>フィードバックを受け取り</h3>
-                <p>PCやタブレット端末から、リアルタイムで制御することができます。
+                <h3 class="sss_t">スマートフォンからの<br>フィードバックを受け取る</h3>
+                <p>スマートフォンの加速度センサーなどを取得し、演出にフィードバックできます。
                 </p>
-                
+
             </div>
         </article>
     </section>
-    <section class="eyecatch">
+    <section class="eyecatch sss">
         <article>
-          
+
             <h3>技術・仕様</h3>
 
         </article>
     </section>
     <section>
         <article>
-            <img src="img/image04.png" >
-           <a class="btn center">BitBucket</a>
+            <img src="img/image04.png">
+            <a target="_blank" class="btn center sss" href="https://bitbucket.org/kumar0613/smartlivedirection">Bitbucket</a>
         </article>
     </section>
-  
+    <section class="eyecatch sss">
+        <article>
+
+            <h3>制作</h3>
+
+        </article>
+    </section>
     <footer>
         <article>
-        <h6>デジタルハリウッド大学 熊谷周太</h6>
+            <img src="./img/prof.jpg" height="200" width="200" class="float_l">
+            <div class="float_r">
+                <h4>熊谷周太<a class="sns_btn sss" href="https://www.facebook.com/shoota.kumagai" target="_blank">facebook</a><a class="sns_btn sss" href="https://twitter.com/rozz_jack" target="_blank">twitter</a></h4>
+                <h5>デジタルハリウッド大学 杉山ゼミ</h5>
+                <p>マルチメディアクリエイターとしてグラフィック・映像・WEB・音楽など様々なコンテンツを制作。 多様なコンテンツ制作から得た多角的な視点をもって効果的な表現手法を用いることを得意とする。
+                </p>
+            </div>
 
         </article>
     </footer>
+    <script type="text/javascript">
+    $('.mobile').hide();
+if ((navigator.userAgent.indexOf('iPhone') > 0 && navigator.userAgent.indexOf('iPad') == -1) || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0) {
+   $('.pc').hide();
+   $('.mobile').show();
+
+}
+</script>
 </body>
 
 </html>
