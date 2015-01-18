@@ -88,7 +88,7 @@ h6 {
   line-height: 1.5;
 }
 input.btn_submit {
-  background: #177e8d;
+  background: #009ebc;
   color: #fff;
   border: none;
   height: 86px;
@@ -165,7 +165,7 @@ input.text_form {
 }
 #logo {
   display: block;
-  margin: 30px auto 0 auto;
+  margin: 30px auto 20px auto;
 }
 #master {
   margin-bottom: 34px;
