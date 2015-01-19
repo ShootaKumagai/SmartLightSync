@@ -146,21 +146,22 @@ $(function() {
             var tmp_RGB = masterRGB;
             tmp_RGB[3] = tmp_Dim;
             confirmRGB(tmp_RGB);
-        };
+        }
 
 
 
         $(document).ready(function() {
             initialize();
+            $(window).off('.noScroll');
             //スイッチクリック  
             $('.switch').click(function() {
                     switchBtn();
-                })
+                });
                 //タップしたカラーパレットをアクティブに
             $('.color').click(function() {
                     $('.color').removeClass('active');
                     $(this).addClass('active');
-                })
+                });
                 //SET-Aをタップ
             $('#color_ch_a_set').click(function() {
                     var tmp_RGB = masterRGB;
@@ -169,7 +170,7 @@ $(function() {
                     $('#color_ch_a').css('background-color', activePalletBg);
                     slideFader(tmp_Bal);
                     confirmRGB(tmp_RGB);
-                })
+                });
                 //SET-Bをタップ
             $('#color_ch_b_set').click(function() {
                     var tmp_RGB = masterRGB;
@@ -178,19 +179,19 @@ $(function() {
                     $('#color_ch_b').css('background-color', activePalletBg);
                     slideFader(tmp_Bal);
                     confirmRGB(tmp_RGB);
-                })
+                });
                 //Boutをタップ
             $('#led_bout').click(function() {
                 changeMasterDimmer(0);
-                $('#master_light_slider').slider("value", 0)
+                $('#master_light_slider').slider("value", 0);
             });
             //Woutをタップ
             $('#led_wout').click(function() {
                 changeMasterDimmer(255);
-                $('#master_light_slider').slider("value", 255)
+                $('#master_light_slider').slider("value", 255);
 
-            })
+            });
 
-        })
+        });
 
-    })
+    });

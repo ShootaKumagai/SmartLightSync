@@ -82,6 +82,10 @@
             sendMessage(masterRGB, 0, 0, 0);
         }
     }
+document.ontouchmove = function(event){
+    event.preventDefault();
+}
+
     </script>
     <script src="./js_core/ui_core.js"></script>
 
@@ -152,15 +156,21 @@
                 <!--1スライダーを表示する領域-->
                 <div class="sub_pallet">
                     <div class="sub_pallet_wrap">
-                        <input class="color">
-                        <input class="color">
-                        <input class="color">
-                        <input class="color">
-                        <input class="color">
-                        <input class="color">
-                        <input class="color">
+                        <input class="color" readonly="readonly">
+                        <input class="color" readonly="readonly">
+                        <input class="color" readonly="readonly">
+                        <input class="color" readonly="readonly">
+                        <input class="color" readonly="readonly">
+                        <input class="color" readonly="readonly">
 
-                    </div>
+                        <input class="color" readonly="readonly">
+                        <input class="color" readonly="readonly">
+                        <input class="color" readonly="readonly">
+                        <input class="color" readonly="readonly">
+                        <input class="color" readonly="readonly">
+                        <input class="color" readonly="readonly">
+                        
+                   
                 </div>
             </section>
 
@@ -174,6 +184,7 @@
 
         </div>
     </div>
+
 </body>
 
 </html>

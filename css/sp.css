@@ -3,14 +3,16 @@
   margin: 0;
   padding: 0;
 }
-html {
+html,
+body {
   height: 100%;
+}
+html {
   font-family: Verdana, "游ゴシック", YuGothic, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
 }
 body {
   color: #fff;
   background: #000;
-  height: 100%;
 }
 #sp_bg,
 #sc_bg {

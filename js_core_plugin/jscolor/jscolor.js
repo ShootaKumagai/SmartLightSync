@@ -592,6 +592,7 @@ var jscolor = {
 				};
 				for(var i=0,segSize=4; i<jscolor.images.sld[1]; i+=segSize) {
 					var seg = document.createElement('div');
+
 					seg.style.height = segSize+'px';
 					seg.style.fontSize = '1px';
 					seg.style.lineHeight = '0';
@@ -601,12 +602,14 @@ var jscolor = {
 				jscolor.picker.box.appendChild(jscolor.picker.sldB);
 				jscolor.picker.box.appendChild(jscolor.picker.sldM);
 				jscolor.picker.padB.appendChild(jscolor.picker.pad);
+
 				jscolor.picker.box.appendChild(jscolor.picker.padB);
 				jscolor.picker.box.appendChild(jscolor.picker.padM);
 				jscolor.picker.btnS.appendChild(jscolor.picker.btnT);
 				jscolor.picker.btn.appendChild(jscolor.picker.btnS);
 				jscolor.picker.box.appendChild(jscolor.picker.btn);
 				jscolor.picker.boxB.appendChild(jscolor.picker.box);
+				jscolor.picker.boxB.className = "picker_wrap";
 			}
 
 			var p = jscolor.picker;
@@ -692,6 +695,7 @@ var jscolor = {
 
 			// picker
 			var dims = getPickerDims(THIS);
+
 			p.box.style.width = dims[0] + 'px';
 			p.box.style.height = dims[1] + 'px';
 
