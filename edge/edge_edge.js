@@ -1,22 +1,19 @@
 /*jslint */
 /*global AdobeEdge: false, window: false, document: false, console:false, alert: false */
-(function (compId) {
+(function(compId) {
 
     "use strict";
-    var im='images/',
-        aud='media/',
-        vid='media/',
-        js='js/',
-        fonts = {
-        },
+    var im = 'images/',
+        aud = 'media/',
+        vid = 'media/',
+        js = 'js/',
+        fonts = {},
         opts = {
             'gAudioPreloadPreference': 'auto',
             'gVideoPreloadPreference': 'auto'
         },
-        resources = [
-        ],
-        scripts = [
-        ],
+        resources = [],
+        scripts = [],
         symbols = {
             "stage": {
                 version: "5.0.1",
@@ -26,211 +23,216 @@
                 centerStage: "both",
                 resizeInstances: false,
                 content: {
-                    dom: [
-                        {
-                            id: 'Rectangle2',
-                            type: 'rect',
-                            rect: ['-6px', '-19px', '819px', '479px', 'auto', 'auto'],
-                            fill: ["rgba(0,0,0,1.00)"],
-                            stroke: [0,"rgb(0, 0, 0)","none"]
-                        },
-                        {
-                            id: 'SubPhones',
-                            symbolName: 'SubPhones',
-                            type: 'rect',
-                            rect: ['1115px', '-295px', '382', '188', 'auto', 'auto']
-                        },
-                        {
-                            id: 'monitor',
+                    dom: [{
+                        id: 'Rectangle2',
+                        type: 'rect',
+                        rect: ['-6px', '-19px', '819px', '479px', 'auto', 'auto'],
+                        fill: ["rgba(0,0,0,1.00)"],
+                        stroke: [0, "rgb(0, 0, 0)", "none"]
+                    }, {
+                        id: 'SubPhones',
+                        symbolName: 'SubPhones',
+                        type: 'rect',
+                        rect: ['1115px', '-295px', '382', '188', 'auto', 'auto']
+                    }, {
+                        id: 'monitor',
+                        display: 'none',
+                        type: 'rect',
+                        rect: ['111px', '10px', '800px', '450px', 'auto', 'auto'],
+                        opacity: '1',
+                        fill: ["rgba(255,225,0,1.00)"],
+                        stroke: [0, "rgba(0,0,0,1)", "none"],
+                        transform: [
+                            [],
+                            ['90'],
+                            [],
+                            ['4.4', '4.4']
+                        ]
+                    }, {
+                        id: 'miku',
+                        display: 'none',
+                        type: 'image',
+                        rect: ['207px', '53px', '408px', '427px', 'auto', 'auto'],
+                        opacity: '0.68',
+                        fill: ["rgba(0,0,0,0)", im + "miku.svg", '0px', '0px'],
+                        transform: [
+                            [],
+                            [],
+                            [],
+                            ['1.2', '1.2']
+                        ]
+                    }, {
+                        id: 'TriMotion',
+                        symbolName: 'TriMotion',
+                        display: 'block',
+                        type: 'rect',
+                        rect: ['-46px', '-24px', '802', '451', 'auto', 'auto'],
+                        opacity: '0',
+                        transform: [
+                            [],
+                            [],
+                            [],
+                            ['0.88704', '0.88704']
+                        ]
+                    }, {
+                        id: 'Text3',
+                        display: 'none',
+                        type: 'text',
+                        rect: ['224px', '203px', 'auto', 'auto', 'auto', 'auto'],
+                        text: "What is this?",
+                        align: "left",
+                        font: ['\'Lucida Console\', Monaco, monospace', [43, "px"], "rgba(255,255,255,1)", "700", "none solid rgb(255, 255, 255)", "normal", "break-word", "nowrap"]
+                    }, {
+                        id: 'RoundRect',
+                        display: 'block',
+                        type: 'rect',
+                        rect: ['327px', '273px', '149px', '45px', 'auto', 'auto'],
+                        borderRadius: ["10px", "10px", "10px", "10px"],
+                        fill: ["rgba(0,158,188,1.00)"],
+                        stroke: [0, "rgb(0, 0, 0)", "none"]
+                    }, {
+                        id: 'btnPlay',
+                        display: 'block',
+                        type: 'text',
+                        rect: ['313px', '278px', '175px', '34px', 'auto', 'auto'],
+                        text: "PLAY",
+                        align: "center",
+                        font: ['\'ヒラギノ角ゴ Pro W3\', \'Hiragino Kaku Gothic Pro\', \'メイリオ\', Meiryo, \'ＭＳＰゴシック\', MS PGothic, sans-serif', [24, ""], "rgba(255,255,255,1.00)", "700", "none", "", "break-word", "normal"]
+                    }, {
+                        id: 'bgm',
+                        display: 'none',
+                        type: 'audio',
+                        tag: 'audio',
+                        rect: ['0', '0', '320px', '45px', 'auto', 'auto'],
+                        source: [aud + "bgm.mp3"],
+                        preload: 'auto'
+                    }, {
+                        id: 'Text',
+                        display: 'none',
+                        type: 'text',
+                        rect: ['266px', '293px', '268px', '32px', 'auto', 'auto'],
+                        text: "SMART LIGHT SYNC",
+                        align: "center",
+                        font: ['Lucida Console, Monaco, monospace', [18, "px"], "rgba(0,158,188,1.00)", "900", "none solid rgb(255, 255, 255)", "normal", "break-word", "normal"]
+                    }, {
+                        id: 'logo_bg_only',
+                        display: 'none',
+                        type: 'image',
+                        rect: ['264px', '89px', '272px', '272px', 'auto', 'auto'],
+                        fill: ["rgba(0,0,0,0)", im + "logo_bg_only.svg", '0px', '0px'],
+                        transform: [
+                            [],
+                            [],
+                            [],
+                            ['0.5', '0.5']
+                        ]
+                    }, {
+                        id: 'logo_only',
+                        display: 'none',
+                        type: 'image',
+                        rect: ['264px', '89px', '272px', '272px', 'auto', 'auto'],
+                        fill: ["rgba(0,0,0,0)", im + "logo_only.svg", '0px', '0px'],
+                        transform: [
+                            [],
+                            [],
+                            [],
+                            ['0.5', '0.5']
+                        ]
+                    }, {
+                        id: 'Rectangle3',
+                        display: 'block',
+                        type: 'rect',
+                        rect: ['908px', '77px', '160px', '299px', 'auto', 'auto'],
+                        fill: ["rgba(0,158,188,1.00)"],
+                        stroke: [0, "rgb(0, 0, 0)", "solid"]
+                    }, {
+                        id: 'phone',
+                        symbolName: 'phone',
+                        display: 'none',
+                        type: 'rect',
+                        rect: ['899px', '55px', '176', '341', 'auto', 'auto'],
+                        transform: [
+                            [],
+                            ['90'],
+                            [],
+                            ['4.7', '4.7']
+                        ]
+                    }, {
+                        id: 'Text4',
+                        display: 'none',
+                        type: 'text',
+                        rect: ['315px', '-108px', 'auto', 'auto', 'auto', 'auto'],
+                        text: "Can control colors of <br>smart phone's monitor <br>in real time!",
+                        align: "left",
+                        font: ['Lucida Console, Monaco, monospace', [29, "px"], "rgba(0,158,188,1.00)", "700", "none solid rgb(255, 255, 255)", "normal", "break-word", "nowrap"],
+                        textStyle: ["215px", "529px", "38px", ""]
+                    }, {
+                        id: 'Text4Copy',
+                        display: 'none',
+                        type: 'text',
+                        rect: ['315px', '602px', 'auto', 'auto', 'auto', 'auto'],
+                        text: "You can get amount of <br>shaking by connected <br>devices.",
+                        align: "left",
+                        font: ['Lucida Console, Monaco, monospace', [29, "px"], "rgba(0,168,156,0.99)", "700", "none solid rgb(255, 255, 255)", "normal", "break-word", "nowrap"],
+                        textStyle: ["215px", "529px", "38px", ""]
+                    }, {
+                        id: 'logo_only2',
+                        display: 'block',
+                        type: 'image',
+                        rect: ['940px', '176px', '97px', '97px', 'auto', 'auto'],
+                        fill: ["rgba(0,0,0,0)", im + "logo_only.svg", '0px', '0px']
+                    }, {
+                        id: 'Text2',
+                        display: 'none',
+                        type: 'text',
+                        rect: ['121px', '191px', '580px', '235px', 'auto', 'auto'],
+                        text: "and also can control<br>LED Light with DMX512",
+                        align: "left",
+                        font: ['Lucida Console, Monaco, monospace', [43, "px"], "rgba(255,255,255,1.00)", "700", "none solid rgba(0, 168, 156, 0.992157)", "normal", "break-word", "normal"],
+                        textStyle: ["", "", "58px", ""]
+                    }, {
+                        id: 'Gage',
+                        display: 'none',
+                        type: 'rect',
+                        rect: ['241px', '110px', '382px', '43px', 'auto', 'auto'],
+                        opacity: '1',
+                        fill: ["rgba(0,0,0,0.00)"],
+                        stroke: [1, "rgba(252,112,0,0.99)", "solid"],
+                        c: [{
+                            id: 'GageInner',
                             display: 'none',
                             type: 'rect',
-                            rect: ['111px', '10px', '800px', '450px', 'auto', 'auto'],
+                            rect: ['0px', '0px', '382px', '43px', 'auto', 'auto'],
                             opacity: '1',
-                            fill: ["rgba(255,225,0,1.00)"],
-                            stroke: [0,"rgba(0,0,0,1)","none"],
-                            transform: [[],['90'],[],['4.4','4.4']]
-                        },
-                        {
-                            id: 'miku',
-                            display: 'none',
-                            type: 'image',
-                            rect: ['207px', '53px', '408px', '427px', 'auto', 'auto'],
-                            opacity: '0.68',
-                            fill: ["rgba(0,0,0,0)",im+"miku.svg",'0px','0px'],
-                            transform: [[],[],[],['1.2','1.2']]
-                        },
-                        {
-                            id: 'TriMotion',
-                            symbolName: 'TriMotion',
-                            display: 'block',
-                            type: 'rect',
-                            rect: ['-46px', '-24px', '802', '451', 'auto', 'auto'],
-                            opacity: '0',
-                            transform: [[],[],[],['0.88704','0.88704']]
-                        },
-                        {
-                            id: 'Text3',
-                            display: 'none',
-                            type: 'text',
-                            rect: ['224px', '203px', 'auto', 'auto', 'auto', 'auto'],
-                            text: "What is this?",
-                            align: "left",
-                            font: ['\'Lucida Console\', Monaco, monospace', [43, "px"], "rgba(255,255,255,1)", "700", "none solid rgb(255, 255, 255)", "normal", "break-word", "nowrap"]
-                        },
-                        {
-                            id: 'RoundRect',
-                            display: 'block',
-                            type: 'rect',
-                            rect: ['327px', '273px', '149px', '45px', 'auto', 'auto'],
-                            borderRadius: ["10px", "10px", "10px", "10px"],
-                            fill: ["rgba(0,158,188,1.00)"],
-                            stroke: [0,"rgb(0, 0, 0)","none"]
-                        },
-                        {
-                            id: 'btnPlay',
-                            display: 'block',
-                            type: 'text',
-                            rect: ['313px', '278px', '175px', '34px', 'auto', 'auto'],
-                            text: "PLAY",
-                            align: "center",
-                            font: ['\'ヒラギノ角ゴ Pro W3\', \'Hiragino Kaku Gothic Pro\', \'メイリオ\', Meiryo, \'ＭＳＰゴシック\', MS PGothic, sans-serif', [24, ""], "rgba(255,255,255,1.00)", "700", "none", "", "break-word", "normal"]
-                        },
-                        {
-                            id: 'bgm',
-                            display: 'none',
-                            type: 'audio',
-                            tag: 'audio',
-                            rect: ['0', '0', '320px', '45px', 'auto', 'auto'],
-                            source: [aud+"bgm.mp3"],
-                            preload: 'auto'
-                        },
-                        {
-                            id: 'Text',
-                            display: 'none',
-                            type: 'text',
-                            rect: ['266px', '293px', '268px', '32px', 'auto', 'auto'],
-                            text: "SMART LIGHT SYNC",
-                            align: "center",
-                            font: ['Lucida Console, Monaco, monospace', [18, "px"], "rgba(0,158,188,1.00)", "900", "none solid rgb(255, 255, 255)", "normal", "break-word", "normal"]
-                        },
-                        {
-                            id: 'logo_bg_only',
-                            display: 'none',
-                            type: 'image',
-                            rect: ['264px', '89px', '272px', '272px', 'auto', 'auto'],
-                            fill: ["rgba(0,0,0,0)",im+"logo_bg_only.svg",'0px','0px'],
-                            transform: [[],[],[],['0.5','0.5']]
-                        },
-                        {
-                            id: 'logo_only',
-                            display: 'none',
-                            type: 'image',
-                            rect: ['264px', '89px', '272px', '272px', 'auto', 'auto'],
-                            fill: ["rgba(0,0,0,0)",im+"logo_only.svg",'0px','0px'],
-                            transform: [[],[],[],['0.5','0.5']]
-                        },
-                        {
-                            id: 'Rectangle3',
-                            display: 'block',
-                            type: 'rect',
-                            rect: ['908px', '77px', '160px', '299px', 'auto', 'auto'],
-                            fill: ["rgba(0,158,188,1.00)"],
-                            stroke: [0,"rgb(0, 0, 0)","solid"]
-                        },
-                        {
-                            id: 'phone',
-                            symbolName: 'phone',
-                            display: 'none',
-                            type: 'rect',
-                            rect: ['899px', '55px', '176', '341', 'auto', 'auto'],
-                            transform: [[],['90'],[],['4.7','4.7']]
-                        },
-                        {
-                            id: 'Text4',
-                            display: 'none',
-                            type: 'text',
-                            rect: ['315px', '-108px', 'auto', 'auto', 'auto', 'auto'],
-                            text: "Can control colors of <br>smart phone's monitor <br>in real time!",
-                            align: "left",
-                            font: ['Lucida Console, Monaco, monospace', [29, "px"], "rgba(0,158,188,1.00)", "700", "none solid rgb(255, 255, 255)", "normal", "break-word", "nowrap"],
-                            textStyle: ["215px", "529px", "38px", ""]
-                        },
-                        {
-                            id: 'Text4Copy',
-                            display: 'none',
-                            type: 'text',
-                            rect: ['315px', '602px', 'auto', 'auto', 'auto', 'auto'],
-                            text: "You can get amount of <br>shaking by connected <br>devices.",
-                            align: "left",
-                            font: ['Lucida Console, Monaco, monospace', [29, "px"], "rgba(0,168,156,0.99)", "700", "none solid rgb(255, 255, 255)", "normal", "break-word", "nowrap"],
-                            textStyle: ["215px", "529px", "38px", ""]
-                        },
-                        {
-                            id: 'logo_only2',
-                            display: 'block',
-                            type: 'image',
-                            rect: ['940px', '176px', '97px', '97px', 'auto', 'auto'],
-                            fill: ["rgba(0,0,0,0)",im+"logo_only.svg",'0px','0px']
-                        },
-                        {
-                            id: 'Text2',
-                            display: 'none',
-                            type: 'text',
-                            rect: ['121px', '191px', '580px', '235px', 'auto', 'auto'],
-                            text: "and also can control<br>LED Light with DMX512",
-                            align: "left",
-                            font: ['Lucida Console, Monaco, monospace', [43, "px"], "rgba(255,255,255,1.00)", "700", "none solid rgba(0, 168, 156, 0.992157)", "normal", "break-word", "normal"],
-                            textStyle: ["", "", "58px", ""]
-                        },
-                        {
-                            id: 'Gage',
-                            display: 'none',
-                            type: 'rect',
-                            rect: ['241px', '110px', '382px', '43px', 'auto', 'auto'],
-                            opacity: '1',
-                            fill: ["rgba(0,0,0,0.00)"],
-                            stroke: [1,"rgba(252,112,0,0.99)","solid"],
-                            c: [
-                            {
-                                id: 'GageInner',
-                                display: 'none',
-                                type: 'rect',
-                                rect: ['0px', '0px', '382px', '43px', 'auto', 'auto'],
-                                opacity: '1',
-                                fill: ["rgba(252,112,0,0.99)"],
-                                stroke: [0,"rgba(252,112,0,0.99)","solid"]
-                            }]
-                        },
-                        {
-                            id: 'Text5',
-                            display: 'none',
-                            type: 'text',
-                            rect: ['315px', '69px', '307px', '39px', 'auto', 'auto'],
-                            text: "SHAKE YOUR PHONE!",
-                            align: "left",
-                            font: ['\'ヒラギノ角ゴ Pro W3\', \'Hiragino Kaku Gothic Pro\', \'メイリオ\', Meiryo, \'ＭＳＰゴシック\', MS PGothic, sans-serif', [41, "px"], "rgba(68,0,252,1)", "700", "none solid rgb(68, 0, 252)", "normal", "break-word", ""],
-                            textStyle: ["", "", "44px", ""]
-                        },
-                        {
-                            id: 'msgComplete',
-                            symbolName: 'Complete',
-                            type: 'rect',
-                            rect: ['356', '181', '351', '62', 'auto', 'auto']
-                        },
-                        {
-                            id: 'Failed',
-                            symbolName: 'Failed',
-                            type: 'rect',
-                            rect: ['356px', '181', 'undefined', 'undefined', 'auto', 'auto']
-                        },
-                        {
-                            id: 'logo',
-                            display: 'block',
-                            type: 'image',
-                            rect: ['172px', '176px', '462px', '62px', 'auto', 'auto'],
-                            fill: ["rgba(0,0,0,0)",im+"logo.png",'0px','0px']
-                        }
-                    ],
+                            fill: ["rgba(252,112,0,0.99)"],
+                            stroke: [0, "rgba(252,112,0,0.99)", "solid"]
+                        }]
+                    }, {
+                        id: 'Text5',
+                        display: 'none',
+                        type: 'text',
+                        rect: ['315px', '69px', '307px', '39px', 'auto', 'auto'],
+                        text: "SHAKE YOUR PHONE!",
+                        align: "left",
+                        font: ['\'ヒラギノ角ゴ Pro W3\', \'Hiragino Kaku Gothic Pro\', \'メイリオ\', Meiryo, \'ＭＳＰゴシック\', MS PGothic, sans-serif', [41, "px"], "rgba(68,0,252,1)", "700", "none solid rgb(68, 0, 252)", "normal", "break-word", ""],
+                        textStyle: ["", "", "44px", ""]
+                    }, {
+                        id: 'msgComplete',
+                        symbolName: 'Complete',
+                        type: 'rect',
+                        rect: ['356', '181', '351', '62', 'auto', 'auto']
+                    }, {
+                        id: 'Failed',
+                        symbolName: 'Failed',
+                        type: 'rect',
+                        rect: ['356px', '181', 'undefined', 'undefined', 'auto', 'auto']
+                    }, {
+                        id: 'logo',
+                        display: 'block',
+                        type: 'image',
+                        rect: ['172px', '176px', '462px', '62px', 'auto', 'auto'],
+                        fill: ["rgba(0,0,0,0)", im + "logo.png", '0px', '0px']
+                    }],
                     style: {
                         '${Stage}': {
                             isStage: true,
@@ -2367,9 +2369,21 @@
                             '252px',
                             '-108px'
                         ],
-                            [ "eid11", "trigger", 0, function executeMediaFunction(e, data) { this._executeMediaAction(e, data); }, ['play', '${bgm}', [] ] ],
-                            [ "eid468", "trigger", 0, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${TriMotion}', [] ] ],
-                            [ "eid526", "trigger", 1, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${SubPhones}', [] ] ]
+                        ["eid11", "trigger", 0, function executeMediaFunction(e, data) {
+                                this._executeMediaAction(e, data);
+                            },
+                            ['play', '${bgm}', []]
+                        ],
+                        ["eid468", "trigger", 0, function executeSymbolFunction(e, data) {
+                                this._executeSymbolAction(e, data);
+                            },
+                            ['play', '${TriMotion}', []]
+                        ],
+                        ["eid526", "trigger", 1, function executeSymbolFunction(e, data) {
+                                this._executeSymbolAction(e, data);
+                            },
+                            ['play', '${SubPhones}', []]
+                        ]
                     ]
                 }
             },
@@ -2381,30 +2395,26 @@
                 centerStage: "none",
                 resizeInstances: false,
                 content: {
-                    dom: [
-                        {
-                            rect: ['0px', '0px', '152px', '317px', 'auto', 'auto'],
-                            borderRadius: ['10px', '10px', '10px', '10px'],
-                            id: 'RoundRect',
-                            stroke: [12, 'rgb(0, 0, 0)', 'solid'],
-                            type: 'rect',
-                            fill: ['rgba(0,169,157,0.00)']
-                        },
-                        {
-                            rect: ['10px', '300px', '161px', '32px', 'auto', 'auto'],
-                            id: 'Rectangle2',
-                            stroke: [0, 'rgb(0, 0, 0)', 'solid'],
-                            type: 'rect',
-                            fill: ['rgba(0,0,0,1.00)']
-                        },
-                        {
-                            rect: ['10px', '8px', '161px', '32px', 'auto', 'auto'],
-                            id: 'Rectangle2Copy',
-                            stroke: [0, 'rgb(0, 0, 0)', 'solid'],
-                            type: 'rect',
-                            fill: ['rgba(0,0,0,1.00)']
-                        }
-                    ],
+                    dom: [{
+                        rect: ['0px', '0px', '152px', '317px', 'auto', 'auto'],
+                        borderRadius: ['10px', '10px', '10px', '10px'],
+                        id: 'RoundRect',
+                        stroke: [12, 'rgb(0, 0, 0)', 'solid'],
+                        type: 'rect',
+                        fill: ['rgba(0,169,157,0.00)']
+                    }, {
+                        rect: ['10px', '300px', '161px', '32px', 'auto', 'auto'],
+                        id: 'Rectangle2',
+                        stroke: [0, 'rgb(0, 0, 0)', 'solid'],
+                        type: 'rect',
+                        fill: ['rgba(0,0,0,1.00)']
+                    }, {
+                        rect: ['10px', '8px', '161px', '32px', 'auto', 'auto'],
+                        id: 'Rectangle2Copy',
+                        stroke: [0, 'rgb(0, 0, 0)', 'solid'],
+                        type: 'rect',
+                        fill: ['rgba(0,0,0,1.00)']
+                    }],
                     style: {
                         '${symbolSelector}': {
                             rect: [null, null, '176px', '341px']
@@ -2427,14 +2437,12 @@
                 centerStage: "none",
                 resizeInstances: false,
                 content: {
-                    dom: [
-                        {
-                            type: 'image',
-                            id: 'triangle',
-                            rect: ['0px', '0px', '169px', '169px', 'auto', 'auto'],
-                            fill: ['rgba(0,0,0,0)', 'images/triangle.svg', '0px', '0px']
-                        }
-                    ],
+                    dom: [{
+                        type: 'image',
+                        id: 'triangle',
+                        rect: ['0px', '0px', '169px', '169px', 'auto', 'auto'],
+                        fill: ['rgba(0,0,0,0)', 'images/triangle.svg', '0px', '0px']
+                    }],
                     style: {
                         '${symbolSelector}': {
                             rect: [null, null, '169px', '169px']
@@ -2476,46 +2484,39 @@
                 centerStage: "none",
                 resizeInstances: false,
                 content: {
-                    dom: [
-                        {
-                            rect: ['2px', '1px', '800px', '450px', 'auto', 'auto'],
-                            type: 'rect',
-                            id: 'Rectangle',
-                            stroke: [0, 'rgba(0,0,0,1)', 'none'],
-                            display: 'none',
-                            fill: ['rgba(192,192,192,1)']
-                        },
-                        {
-                            type: 'rect',
-                            id: 'TriMotion1Row',
-                            symbolName: 'TriMotion1Row',
-                            rect: ['-132', '0px', '1194', '169', 'auto', 'auto']
-                        },
-                        {
-                            type: 'rect',
-                            id: 'TriMotion1RowCopy2',
-                            symbolName: 'TriMotion1Row',
-                            rect: ['-132', '253px', '1194', '169', 'auto', 'auto']
-                        },
-                        {
-                            type: 'rect',
-                            id: 'TriMotion1RowCopy3',
-                            symbolName: 'TriMotion1Row',
-                            rect: ['-204px', '379px', '1194', '169', 'auto', 'auto']
-                        },
-                        {
-                            type: 'rect',
-                            id: 'TriMotion1RowCopy',
-                            symbolName: 'TriMotion1Row',
-                            rect: ['-57px', '126px', '1194', '169', 'auto', 'auto']
-                        },
-                        {
-                            type: 'rect',
-                            id: 'TriMotion1RowCopy4',
-                            symbolName: 'TriMotion1Row',
-                            rect: ['-57px', '-126px', '1194', '169', 'auto', 'auto']
-                        }
-                    ],
+                    dom: [{
+                        rect: ['2px', '1px', '800px', '450px', 'auto', 'auto'],
+                        type: 'rect',
+                        id: 'Rectangle',
+                        stroke: [0, 'rgba(0,0,0,1)', 'none'],
+                        display: 'none',
+                        fill: ['rgba(192,192,192,1)']
+                    }, {
+                        type: 'rect',
+                        id: 'TriMotion1Row',
+                        symbolName: 'TriMotion1Row',
+                        rect: ['-132', '0px', '1194', '169', 'auto', 'auto']
+                    }, {
+                        type: 'rect',
+                        id: 'TriMotion1RowCopy2',
+                        symbolName: 'TriMotion1Row',
+                        rect: ['-132', '253px', '1194', '169', 'auto', 'auto']
+                    }, {
+                        type: 'rect',
+                        id: 'TriMotion1RowCopy3',
+                        symbolName: 'TriMotion1Row',
+                        rect: ['-204px', '379px', '1194', '169', 'auto', 'auto']
+                    }, {
+                        type: 'rect',
+                        id: 'TriMotion1RowCopy',
+                        symbolName: 'TriMotion1Row',
+                        rect: ['-57px', '126px', '1194', '169', 'auto', 'auto']
+                    }, {
+                        type: 'rect',
+                        id: 'TriMotion1RowCopy4',
+                        symbolName: 'TriMotion1Row',
+                        rect: ['-57px', '-126px', '1194', '169', 'auto', 'auto']
+                    }],
                     style: {
                         '${symbolSelector}': {
                             rect: [null, null, '802px', '451px']
@@ -2606,16 +2607,56 @@
                             '-57px',
                             '-57px'
                         ],
-                            [ "eid482", "trigger", 0, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['stop', '${TriMotion1Row}', [] ] ],
-                            [ "eid485", "trigger", 0, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['stop', '${TriMotion1RowCopy3}', [] ] ],
-                            [ "eid484", "trigger", 0, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['stop', '${TriMotion1RowCopy}', [] ] ],
-                            [ "eid486", "trigger", 0, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['stop', '${TriMotion1RowCopy2}', [] ] ],
-                            [ "eid483", "trigger", 0, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['stop', '${TriMotion1RowCopy4}', [] ] ],
-                            [ "eid472", "trigger", 1, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${TriMotion1RowCopy2}', [] ] ],
-                            [ "eid481", "trigger", 1, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${TriMotion1RowCopy4}', [] ] ],
-                            [ "eid473", "trigger", 1, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${TriMotion1RowCopy3}', [] ] ],
-                            [ "eid474", "trigger", 1, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${TriMotion1Row}', [] ] ],
-                            [ "eid471", "trigger", 1, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${TriMotion1RowCopy}', [] ] ]
+                        ["eid482", "trigger", 0, function executeSymbolFunction(e, data) {
+                                this._executeSymbolAction(e, data);
+                            },
+                            ['stop', '${TriMotion1Row}', []]
+                        ],
+                        ["eid485", "trigger", 0, function executeSymbolFunction(e, data) {
+                                this._executeSymbolAction(e, data);
+                            },
+                            ['stop', '${TriMotion1RowCopy3}', []]
+                        ],
+                        ["eid484", "trigger", 0, function executeSymbolFunction(e, data) {
+                                this._executeSymbolAction(e, data);
+                            },
+                            ['stop', '${TriMotion1RowCopy}', []]
+                        ],
+                        ["eid486", "trigger", 0, function executeSymbolFunction(e, data) {
+                                this._executeSymbolAction(e, data);
+                            },
+                            ['stop', '${TriMotion1RowCopy2}', []]
+                        ],
+                        ["eid483", "trigger", 0, function executeSymbolFunction(e, data) {
+                                this._executeSymbolAction(e, data);
+                            },
+                            ['stop', '${TriMotion1RowCopy4}', []]
+                        ],
+                        ["eid472", "trigger", 1, function executeSymbolFunction(e, data) {
+                                this._executeSymbolAction(e, data);
+                            },
+                            ['play', '${TriMotion1RowCopy2}', []]
+                        ],
+                        ["eid481", "trigger", 1, function executeSymbolFunction(e, data) {
+                                this._executeSymbolAction(e, data);
+                            },
+                            ['play', '${TriMotion1RowCopy4}', []]
+                        ],
+                        ["eid473", "trigger", 1, function executeSymbolFunction(e, data) {
+                                this._executeSymbolAction(e, data);
+                            },
+                            ['play', '${TriMotion1RowCopy3}', []]
+                        ],
+                        ["eid474", "trigger", 1, function executeSymbolFunction(e, data) {
+                                this._executeSymbolAction(e, data);
+                            },
+                            ['play', '${TriMotion1Row}', []]
+                        ],
+                        ["eid471", "trigger", 1, function executeSymbolFunction(e, data) {
+                                this._executeSymbolAction(e, data);
+                            },
+                            ['play', '${TriMotion1RowCopy}', []]
+                        ]
                     ]
                 }
             },
@@ -2627,64 +2668,55 @@
                 centerStage: "none",
                 resizeInstances: false,
                 content: {
-                    dom: [
-                        {
-                            userClass: 'tri',
-                            id: 'triangle2',
-                            symbolName: 'triangle',
-                            rect: ['0px', '0px', '169', '169', 'auto', 'auto'],
-                            type: 'rect'
-                        },
-                        {
-                            userClass: 'tri',
-                            id: 'triangle2Copy15',
-                            symbolName: 'triangle',
-                            rect: ['177px', '0px', '169', '169', 'auto', 'auto'],
-                            type: 'rect'
-                        },
-                        {
-                            userClass: 'tri',
-                            id: 'triangle2Copy17',
-                            symbolName: 'triangle',
-                            rect: ['292px', '0px', '169', '169', 'auto', 'auto'],
-                            type: 'rect'
-                        },
-                        {
-                            userClass: 'tri',
-                            id: 'triangle2Copy16',
-                            symbolName: 'triangle',
-                            rect: ['438px', '0px', '169', '169', 'auto', 'auto'],
-                            type: 'rect'
-                        },
-                        {
-                            userClass: 'tri',
-                            id: 'triangle2Copy19',
-                            symbolName: 'triangle',
-                            rect: ['584px', '0px', '169', '169', 'auto', 'auto'],
-                            type: 'rect'
-                        },
-                        {
-                            userClass: 'tri',
-                            id: 'triangle2Copy18',
-                            symbolName: 'triangle',
-                            rect: ['730px', '0px', '169', '169', 'auto', 'auto'],
-                            type: 'rect'
-                        },
-                        {
-                            userClass: 'tri',
-                            id: 'triangle2Copy21',
-                            symbolName: 'triangle',
-                            rect: ['923px', '0px', '169', '169', 'auto', 'auto'],
-                            type: 'rect'
-                        },
-                        {
-                            userClass: 'tri',
-                            id: 'triangle2Copy20',
-                            symbolName: 'triangle',
-                            rect: ['1069px', '0px', '169', '169', 'auto', 'auto'],
-                            type: 'rect'
-                        }
-                    ],
+                    dom: [{
+                        userClass: 'tri',
+                        id: 'triangle2',
+                        symbolName: 'triangle',
+                        rect: ['0px', '0px', '169', '169', 'auto', 'auto'],
+                        type: 'rect'
+                    }, {
+                        userClass: 'tri',
+                        id: 'triangle2Copy15',
+                        symbolName: 'triangle',
+                        rect: ['177px', '0px', '169', '169', 'auto', 'auto'],
+                        type: 'rect'
+                    }, {
+                        userClass: 'tri',
+                        id: 'triangle2Copy17',
+                        symbolName: 'triangle',
+                        rect: ['292px', '0px', '169', '169', 'auto', 'auto'],
+                        type: 'rect'
+                    }, {
+                        userClass: 'tri',
+                        id: 'triangle2Copy16',
+                        symbolName: 'triangle',
+                        rect: ['438px', '0px', '169', '169', 'auto', 'auto'],
+                        type: 'rect'
+                    }, {
+                        userClass: 'tri',
+                        id: 'triangle2Copy19',
+                        symbolName: 'triangle',
+                        rect: ['584px', '0px', '169', '169', 'auto', 'auto'],
+                        type: 'rect'
+                    }, {
+                        userClass: 'tri',
+                        id: 'triangle2Copy18',
+                        symbolName: 'triangle',
+                        rect: ['730px', '0px', '169', '169', 'auto', 'auto'],
+                        type: 'rect'
+                    }, {
+                        userClass: 'tri',
+                        id: 'triangle2Copy21',
+                        symbolName: 'triangle',
+                        rect: ['923px', '0px', '169', '169', 'auto', 'auto'],
+                        type: 'rect'
+                    }, {
+                        userClass: 'tri',
+                        id: 'triangle2Copy20',
+                        symbolName: 'triangle',
+                        rect: ['1069px', '0px', '169', '169', 'auto', 'auto'],
+                        type: 'rect'
+                    }],
                     style: {
                         '${symbolSelector}': {
                             rect: [null, null, '1194px', '169px']
@@ -2755,21 +2787,81 @@
                             '0px',
                             '0px'
                         ],
-                            [ "eid445", "trigger", 0, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['stop', '${triangle2Copy15}', [] ] ],
-                            [ "eid442", "trigger", 0, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['stop', '${triangle2Copy18}', [] ] ],
-                            [ "eid446", "trigger", 0, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['stop', '${triangle2Copy20}', [] ] ],
-                            [ "eid256", "trigger", 0, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['stop', '${triangle2}', [] ] ],
-                            [ "eid441", "trigger", 0, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['stop', '${triangle2Copy21}', [] ] ],
-                            [ "eid443", "trigger", 0, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['stop', '${triangle2Copy16}', [] ] ],
-                            [ "eid444", "trigger", 0, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['stop', '${triangle2Copy19}', [] ] ],
-                            [ "eid453", "trigger", 1, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${triangle2Copy21}', [] ] ],
-                            [ "eid447", "trigger", 1, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${triangle2Copy20}', [] ] ],
-                            [ "eid257", "trigger", 1, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${triangle2}', [] ] ],
-                            [ "eid448", "trigger", 1, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${triangle2Copy19}', [] ] ],
-                            [ "eid451", "trigger", 1, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${triangle2Copy18}', [] ] ],
-                            [ "eid450", "trigger", 1, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${triangle2Copy16}', [] ] ],
-                            [ "eid452", "trigger", 1, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${triangle2Copy15}', [] ] ],
-                            [ "eid469", "trigger", 1, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${triangle2Copy17}', [] ] ]
+                        ["eid445", "trigger", 0, function executeSymbolFunction(e, data) {
+                                this._executeSymbolAction(e, data);
+                            },
+                            ['stop', '${triangle2Copy15}', []]
+                        ],
+                        ["eid442", "trigger", 0, function executeSymbolFunction(e, data) {
+                                this._executeSymbolAction(e, data);
+                            },
+                            ['stop', '${triangle2Copy18}', []]
+                        ],
+                        ["eid446", "trigger", 0, function executeSymbolFunction(e, data) {
+                                this._executeSymbolAction(e, data);
+                            },
+                            ['stop', '${triangle2Copy20}', []]
+                        ],
+                        ["eid256", "trigger", 0, function executeSymbolFunction(e, data) {
+                                this._executeSymbolAction(e, data);
+                            },
+                            ['stop', '${triangle2}', []]
+                        ],
+                        ["eid441", "trigger", 0, function executeSymbolFunction(e, data) {
+                                this._executeSymbolAction(e, data);
+                            },
+                            ['stop', '${triangle2Copy21}', []]
+                        ],
+                        ["eid443", "trigger", 0, function executeSymbolFunction(e, data) {
+                                this._executeSymbolAction(e, data);
+                            },
+                            ['stop', '${triangle2Copy16}', []]
+                        ],
+                        ["eid444", "trigger", 0, function executeSymbolFunction(e, data) {
+                                this._executeSymbolAction(e, data);
+                            },
+                            ['stop', '${triangle2Copy19}', []]
+                        ],
+                        ["eid453", "trigger", 1, function executeSymbolFunction(e, data) {
+                                this._executeSymbolAction(e, data);
+                            },
+                            ['play', '${triangle2Copy21}', []]
+                        ],
+                        ["eid447", "trigger", 1, function executeSymbolFunction(e, data) {
+                                this._executeSymbolAction(e, data);
+                            },
+                            ['play', '${triangle2Copy20}', []]
+                        ],
+                        ["eid257", "trigger", 1, function executeSymbolFunction(e, data) {
+                                this._executeSymbolAction(e, data);
+                            },
+                            ['play', '${triangle2}', []]
+                        ],
+                        ["eid448", "trigger", 1, function executeSymbolFunction(e, data) {
+                                this._executeSymbolAction(e, data);
+                            },
+                            ['play', '${triangle2Copy19}', []]
+                        ],
+                        ["eid451", "trigger", 1, function executeSymbolFunction(e, data) {
+                                this._executeSymbolAction(e, data);
+                            },
+                            ['play', '${triangle2Copy18}', []]
+                        ],
+                        ["eid450", "trigger", 1, function executeSymbolFunction(e, data) {
+                                this._executeSymbolAction(e, data);
+                            },
+                            ['play', '${triangle2Copy16}', []]
+                        ],
+                        ["eid452", "trigger", 1, function executeSymbolFunction(e, data) {
+                                this._executeSymbolAction(e, data);
+                            },
+                            ['play', '${triangle2Copy15}', []]
+                        ],
+                        ["eid469", "trigger", 1, function executeSymbolFunction(e, data) {
+                                this._executeSymbolAction(e, data);
+                            },
+                            ['play', '${triangle2Copy17}', []]
+                        ]
                     ]
                 }
             },
@@ -2781,21 +2873,18 @@
                 centerStage: "none",
                 resizeInstances: false,
                 content: {
-                    dom: [
-                        {
-                            type: 'rect',
-                            id: 'Rectangle',
-                            stroke: [0, 'rgba(0,0,0,1)', 'none'],
-                            rect: ['10px', '24px', '160px', '287px', 'auto', 'auto'],
-                            fill: ['rgba(255,115,0,1.00)']
-                        },
-                        {
-                            rect: ['0px', '0px', null, null, 'auto', 'auto'],
-                            id: 'phone2',
-                            symbolName: 'phone',
-                            type: 'rect'
-                        }
-                    ],
+                    dom: [{
+                        type: 'rect',
+                        id: 'Rectangle',
+                        stroke: [0, 'rgba(0,0,0,1)', 'none'],
+                        rect: ['10px', '24px', '160px', '287px', 'auto', 'auto'],
+                        fill: ['rgba(255,115,0,1.00)']
+                    }, {
+                        rect: ['0px', '0px', null, null, 'auto', 'auto'],
+                        id: 'phone2',
+                        symbolName: 'phone',
+                        type: 'rect'
+                    }],
                     style: {
                         '${symbolSelector}': {
                             rect: [null, null, '176px', '341px']
@@ -2867,29 +2956,40 @@
                 centerStage: "none",
                 resizeInstances: false,
                 content: {
-                    dom: [
-                        {
-                            type: 'rect',
-                            id: 'SubPhone',
-                            symbolName: 'SubPhone',
-                            transform: [[], [], [], ['0.55114', '0.55114']],
-                            rect: ['-219px', '-76px', '176', '341', 'auto', 'auto']
-                        },
-                        {
-                            type: 'rect',
-                            id: 'SubPhoneCopy',
-                            symbolName: 'SubPhone',
-                            transform: [[], [], [], ['0.55114', '0.55114']],
-                            rect: ['-219px', '-76px', '176', '341', 'auto', 'auto']
-                        },
-                        {
-                            type: 'rect',
-                            id: 'SubPhoneCopy2',
-                            symbolName: 'SubPhone',
-                            transform: [[], [], [], ['0.55114', '0.55114']],
-                            rect: ['-219px', '-77px', '176', '341', 'auto', 'auto']
-                        }
-                    ],
+                    dom: [{
+                        type: 'rect',
+                        id: 'SubPhone',
+                        symbolName: 'SubPhone',
+                        transform: [
+                            [],
+                            [],
+                            [],
+                            ['0.55114', '0.55114']
+                        ],
+                        rect: ['-219px', '-76px', '176', '341', 'auto', 'auto']
+                    }, {
+                        type: 'rect',
+                        id: 'SubPhoneCopy',
+                        symbolName: 'SubPhone',
+                        transform: [
+                            [],
+                            [],
+                            [],
+                            ['0.55114', '0.55114']
+                        ],
+                        rect: ['-219px', '-76px', '176', '341', 'auto', 'auto']
+                    }, {
+                        type: 'rect',
+                        id: 'SubPhoneCopy2',
+                        symbolName: 'SubPhone',
+                        transform: [
+                            [],
+                            [],
+                            [],
+                            ['0.55114', '0.55114']
+                        ],
+                        rect: ['-219px', '-77px', '176', '341', 'auto', 'auto']
+                    }],
                     style: {
                         '${symbolSelector}': {
                             rect: [null, null, '382px', '188px']
@@ -3050,9 +3150,21 @@
                             '0.55114',
                             '0.55114'
                         ],
-                            [ "eid523", "trigger", 0, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${SubPhoneCopy2}', [] ] ],
-                            [ "eid524", "trigger", 0, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${SubPhoneCopy}', [] ] ],
-                            [ "eid525", "trigger", 0, function executeSymbolFunction(e, data) { this._executeSymbolAction(e, data); }, ['play', '${SubPhone}', [] ] ]
+                        ["eid523", "trigger", 0, function executeSymbolFunction(e, data) {
+                                this._executeSymbolAction(e, data);
+                            },
+                            ['play', '${SubPhoneCopy2}', []]
+                        ],
+                        ["eid524", "trigger", 0, function executeSymbolFunction(e, data) {
+                                this._executeSymbolAction(e, data);
+                            },
+                            ['play', '${SubPhoneCopy}', []]
+                        ],
+                        ["eid525", "trigger", 0, function executeSymbolFunction(e, data) {
+                                this._executeSymbolAction(e, data);
+                            },
+                            ['play', '${SubPhone}', []]
+                        ]
                     ]
                 }
             },
@@ -3064,18 +3176,16 @@
                 centerStage: "none",
                 resizeInstances: false,
                 content: {
-                    dom: [
-                        {
-                            type: 'text',
-                            id: 'complete',
-                            text: 'COMPLETE!',
-                            rect: ['0px', '0px', '351px', '62px', 'auto', 'auto'],
-                            display: 'none',
-                            align: 'left',
-                            font: ['\'ヒラギノ角ゴ Pro W3\', \'Hiragino Kaku Gothic Pro\', メイリオ, Meiryo, ＭＳＰゴシック, \'MS PGothic\', sans-serif', [41, 'px'], 'rgba(68,0,252,1)', '700', 'none solid rgb(68, 0, 252)', 'normal', 'break-word', 'normal'],
-                            opacity: '1'
-                        }
-                    ],
+                    dom: [{
+                        type: 'text',
+                        id: 'complete',
+                        text: 'COMPLETE!',
+                        rect: ['0px', '0px', '351px', '62px', 'auto', 'auto'],
+                        display: 'none',
+                        align: 'left',
+                        font: ['\'ヒラギノ角ゴ Pro W3\', \'Hiragino Kaku Gothic Pro\', メイリオ, Meiryo, ＭＳＰゴシック, \'MS PGothic\', sans-serif', [41, 'px'], 'rgba(68,0,252,1)', '700', 'none solid rgb(68, 0, 252)', 'normal', 'break-word', 'normal'],
+                        opacity: '1'
+                    }],
                     style: {
                         '${symbolSelector}': {
                             rect: [null, null, '351px', '62px']
@@ -3157,18 +3267,16 @@
                 centerStage: "none",
                 resizeInstances: false,
                 content: {
-                    dom: [
-                        {
-                            type: 'text',
-                            id: 'complete',
-                            text: 'FAILED...',
-                            font: ['\'ヒラギノ角ゴ Pro W3\', \'Hiragino Kaku Gothic Pro\', メイリオ, Meiryo, ＭＳＰゴシック, \'MS PGothic\', sans-serif', [41, 'px'], 'rgba(68,0,252,1)', '700', 'none solid rgb(68, 0, 252)', 'normal', 'break-word', 'normal'],
-                            display: 'none',
-                            rect: ['0px', '0px', '351px', '62px', 'auto', 'auto'],
-                            opacity: '1',
-                            align: 'left'
-                        }
-                    ],
+                    dom: [{
+                        type: 'text',
+                        id: 'complete',
+                        text: 'FAILED...',
+                        font: ['\'ヒラギノ角ゴ Pro W3\', \'Hiragino Kaku Gothic Pro\', メイリオ, Meiryo, ＭＳＰゴシック, \'MS PGothic\', sans-serif', [41, 'px'], 'rgba(68,0,252,1)', '700', 'none solid rgb(68, 0, 252)', 'normal', 'break-word', 'normal'],
+                        display: 'none',
+                        rect: ['0px', '0px', '351px', '62px', 'auto', 'auto'],
+                        opacity: '1',
+                        align: 'left'
+                    }],
                     style: {
                         '${symbolSelector}': {
                             rect: [null, null, '351px', '62px']

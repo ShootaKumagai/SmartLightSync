@@ -207,6 +207,7 @@ var jscolor = {
 			return [document.documentElement.clientWidth, document.documentElement.clientHeight];
 		} else {
 			return [0, 0];
+			
 		}
 	},
 

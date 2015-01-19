@@ -30,10 +30,10 @@
     clientText = "";
     clientRGB = [0, 0, 0, 0];
     tmp_nowCh = 1; //
-        //グローバル変数
-        bal = 0; //バランスA&B
-        //dim=255;マスターディマー(廃止)
-        masterRGB = [0, 0, 0, 0]; //マスター[1ch,2c,...]=[R,G,B,Dimmer]
+    //グローバル変数
+    bal = 0; //バランスA&B
+    //dim=255;マスターディマー(廃止)
+    masterRGB = [0, 0, 0, 0]; //マスター[1ch,2c,...]=[R,G,B,Dimmer]
 
     //var msg=new Array[3];
 
@@ -95,55 +95,54 @@
     }
 
     function addMessage(msg) {
-        clientRGB = msg[0]
-        dim = msg[0][3] / 255;
-        $("#msg_list").prepend("<p class='msg'>msg:" + msg + "</p>");
-        $("#sp_bg,#sc_bg").css({
-            "backgroundColor": 'rgba(' + msg[0][0] + ',' + msg[0][1] + ',' + msg[0][2] + ',' + dim + ')'
-        });
+            clientRGB = msg[0]
+            dim = msg[0][3] / 255;
+            $("#msg_list").prepend("<p class='msg'>msg:" + msg + "</p>");
+            $("#sp_bg,#sc_bg").css({
+                "backgroundColor": 'rgba(' + msg[0][0] + ',' + msg[0][1] + ',' + msg[0][2] + ',' + dim + ')'
+            });
 
 
-        count_up = count_up + msg[2];
+            count_up = count_up + msg[2];
 
 
-        var t_count_up = String(count_up);
-        console.log(t_count_up);
-        $("#text2").empty().append(t_count_up);
-  
+            var t_count_up = String(count_up);
+            console.log(t_count_up);
+            $("#text2").empty().append(t_count_up);
 
 
-        function change_bg() {
-            if (event.data[1] == 0) {
-                ch_1 = parseInt(event.data[2]) / 127 * 100 + "%";
-            }
-            if (event.data[1] == 1) {
-                ch_2 = parseInt(event.data[2]) / 127 * 100 + "%";
-            }
-            if (event.data[1] == 2) {
-                ch_3 = parseInt(event.data[2]) / 127 * 100 + "%";
-            }
-            sendMessage(ch_1, ch_2, ch_3);
-            $('body').css({
+
+            function change_bg() {
+                if (event.data[1] == 0) {
+                    ch_1 = parseInt(event.data[2]) / 127 * 100 + "%";
+                }
+                if (event.data[1] == 1) {
+                    ch_2 = parseInt(event.data[2]) / 127 * 100 + "%";
+                }
+                if (event.data[1] == 2) {
+                    ch_3 = parseInt(event.data[2]) / 127 * 100 + "%";
+                }
+                sendMessage(ch_1, ch_2, ch_3);
+                $('body').css({
                     "backgroundColor": "rgb(" + ch_r + "," + ch_g + "," + ch_b + ")"
                 })
-                
+
+            }
+
         }
-
+        // スクロールを抑止する関数
+    function preventScroll(event) {
+        event.preventDefault();
     }
-// スクロールを抑止する関数
-function preventScroll(event) {
-  event.preventDefault();
-}
 
-// タッチイベントの初期化
-document.addEventListener("touchstart", preventScroll, false);
-document.addEventListener("touchmove", preventScroll, false);
-document.addEventListener("touchend", preventScroll, false); 
-// ジェスチャーイベントの初期化
-document.addEventListener("gesturestart", preventScroll, false);
-document.addEventListener("gesturechange", preventScroll, false);
-document.addEventListener("gestureend", preventScroll, false);
-
+    // タッチイベントの初期化
+    document.addEventListener("touchstart", preventScroll, false);
+    document.addEventListener("touchmove", preventScroll, false);
+    document.addEventListener("touchend", preventScroll, false);
+    // ジェスチャーイベントの初期化
+    document.addEventListener("gesturestart", preventScroll, false);
+    document.addEventListener("gesturechange", preventScroll, false);
+    document.addEventListener("gestureend", preventScroll, false);
     </script>
     <!--SP用JS読み込み-->
     <script src="./js_core/sp.js"></script>
