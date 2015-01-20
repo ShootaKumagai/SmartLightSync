@@ -4,6 +4,7 @@
 
 
 const DEVICE_PATH = '/dev/tty.usbmodem1421';
+//▲ardinoを接続するポート名を入力します
 const serial = chrome.serial;
 
 /* Interprets an ArrayBuffer as UTF-8 encoded string data. */
